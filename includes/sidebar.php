@@ -328,6 +328,14 @@
                   <span class="nav-link-text ms-1">Add Alumni</span>
                 </a>
               </li>
+              <li class="nav-item ">
+                <a class="nav-link text-white " href="../../pages/student/add_student.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons opacity-10">person_add</i>
+                  </div>
+                  <span class="nav-link-text ms-1">Add Student</span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
@@ -372,6 +380,16 @@
                     </i>
                   </div>
                   <span class="nav-link-text ms-2 ps-1">Alumni Lists</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link text-white " href="../student/student-list.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons">
+                      toc
+                    </i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Student Lists</span>
                 </a>
               </li>
             </ul>
@@ -528,6 +546,14 @@
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+                <a class="nav-link text-white " href="../donation/donation-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-bank"></i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Donation</span>
+                </a>
+              </li>
 
       </ul>
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -687,7 +713,14 @@ if ($num > 0) {
           </a>
         </li>';
 } ?> 
-      
+      <li class="nav-item">
+                <a class="nav-link text-white " href="../donation/donation-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-bank"></i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Donation</span>
+                </a>
+              </li>
       </ul>
       
 
