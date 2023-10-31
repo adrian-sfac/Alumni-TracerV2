@@ -228,6 +228,14 @@
                   <span class="nav-link-text ms-2 ps-1">Forum</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-white " href="../forum/forum-form2.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-chat-left-dots-fill"></i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">ForumTest</span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
