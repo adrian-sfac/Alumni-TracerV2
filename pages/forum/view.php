@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include '../../includes/conn.php';
 $data = array();
 $sql = "SELECT *  FROM `tbl_forum` ORDER BY id desc";
 $result = $conn->query($sql);

@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include '../../includes/conn.php';
 $id = $_POST['id'];
 $name = $_POST['name'];
 $msg = $_POST['msg'];
