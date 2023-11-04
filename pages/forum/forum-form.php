@@ -33,10 +33,19 @@ include '../../includes/head.php';
       <div class="modal-body">
         <form name="frm1" method="post">
             <input type="hidden" id="commentid" name="Rcommentid">
-        	<div class="form-group">
-        	  <label for="usr">Write your name:</label>
-        	  <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; padding: 10px; margin-bottom: 10px;" name="Rname" required>
-        	</div>
+            <div class="nav-item mb-2 mt-0">
+                <a href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
+                  <?php 
+                  $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
+                        while ($row = mysqli_fetch_array($getImg)) {
+                  if (empty($row['img'])) {
+                    echo '<img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="../../assets/img/image.png"/>';
+                  } else {
+                    echo ' <img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
+                  } }?>
+
+                  <label class="text-bold ms-1 ps-1"><?php echo $user_name ?></span>
+                </a>
             <div class="form-group">
               <label for="comment">Write your reply:</label>
               <textarea class="form-control" style="border: 1px solid black; border-radius: 10px; padding: 10px; margin-bottom: 25px;" rows="5" name="Rmsg" required></textarea>

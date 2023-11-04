@@ -1,11 +1,10 @@
 <?php
 include '../../includes/conn.php';
 $id = $_POST['id'];
-$name = $_POST['name'];
 $msg = $_POST['msg'];
-if($name != "" && $msg != ""){
-	$sql = $conn->query("INSERT INTO tbl_forum (parent_comment, student, post)
-			VALUES ('$id', '$name', '$msg')");
+if($msg != ""){
+	$sql = $conn->query("INSERT INTO tbl_forum (parent_comment, post)
+			VALUES ('$id','$msg')");
 	echo json_encode(array("statusCode"=>200));
 }
 else{
