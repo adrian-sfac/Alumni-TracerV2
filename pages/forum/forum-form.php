@@ -22,8 +22,8 @@ include '../../includes/head.php';
 <?php include "../../includes/sidebar.php"?>
 
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
-    <?php if ($_SESSION['role'] == "Super Administrator") { 
-    $admin_id = $_SESSION['userid'];
+    <?php if ($_SESSION['role'] == "Super Administrator") : 
+        $admin_id = $_SESSION['userid'];
     ?>
 
     <div class="container mt-5">
@@ -40,15 +40,12 @@ include '../../includes/head.php';
                             <?php 
                             $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
                             while ($row = mysqli_fetch_array($getImg)) {
-                                if (empty($row['img'])) {
-                                    echo '<img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="../../assets/img/image.png"/>';
-                                } else {
-                                    echo ' <img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
-                                }
+                                $imgSrc = empty($row['img']) ? '../../assets/img/image.png' : 'data:image/jpeg;base64,' . base64_encode($row['img']);
+                                echo '<img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="' . $imgSrc . '" />';
                             }
                             ?>
 
-                            <label class="text-bold ms-1 ps-1"><?php echo $user_name ?></span>
+                            <label class="text-bold ms-1 ps-1"><?= $user_name ?></label>
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
@@ -67,14 +64,14 @@ include '../../includes/head.php';
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
                                 $sql = "INSERT INTO tbl_forum (id, user, message, date) VALUES ('', '$user_name', '$message', '$date')";
                                 if ($savepost = mysqli_query($db, $sql)) {
-                                  echo "<script languge=javascript>alert('Post success!')</script>";
+                                  echo "<script language=javascript>alert('Post success!')</script>";
                                   echo "<script> document.location='forum-form.php' </script>";
                                 } else {
-                                  echo "<script languge=javascript>alert('Post unsuccessful.')</script>";
+                                  echo "<script language=javascript>alert('Post unsuccessful.')</script>";
                                   echo "<script> document.location='forum-form.php' </script>";
                                 }
                             } else {
-                                echo "<script languge=javascript>alert('Message must be between 1 and 500 characters.')</script>";
+                                echo "<script language=javascript>alert('Message must be between 1 and 500 characters.')</script>";
                                 echo "<script> document.location='forum-form.php' </script>";
                             }
                         }
@@ -82,146 +79,138 @@ include '../../includes/head.php';
                     </form>
                 </div>
             </div>
-    </div>
+        </div>
     
-            <?php
+        <?php
 
-            // Function to display comments and their replies
-            function displayComments($db, $parentId = 0, $level = 0) {
-                $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
+        // Function to display comments and their replies
+        function displayComments($db, $parentId = 0, $level = 0) {
+            $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
-                while ($comment = mysqli_fetch_assoc($comments)) {
-                    echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-                    echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
-                    echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
-                    echo "<p style='color: black;'>" . $comment['message'] . "</p>";
-                    echo "<p>Date: " . $comment['date'] . "</p>";
-                    echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
-                    echo '</div>';
+            while ($comment = mysqli_fetch_assoc($comments)) {
+                echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
+                echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+                echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
+                echo "<p style='color: black;'>" . $comment['message'] . "</p>";
+                echo "<p>Date: " . $comment['date'] . "</p>";
+                echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+                echo '</div>';
 
-                    // Recursively display replies
-                    displayComments($db, $comment['id'], $level + 1);
+                // Recursively display replies
+                displayComments($db, $comment['id'], $level + 1);
 
-                    echo '</div>';
-                }
+                echo '</div>';
             }
-            ?>
+        }
+        ?>
 
-            <div class="card mt-4">
-                <div class="card-body" style="background-color: #fff; border: 0px; border-radius: 10px">
-                    <h4 style="margin-bottom: 15px;">Recent Questions</h4>
-                    <?php
-                    $display = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = 0 ORDER BY id DESC");
+        <div class="card mt-4">
+            <div class="card-body" style="background-color: #fff; border: 0px; border-radius: 10px">
+                <h4 style="margin-bottom: 15px;">Recent Questions</h4>
+                <?php
+                $display = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = 0 ORDER BY id DESC");
 
-                    if (mysqli_num_rows($display) != 0) {
-                        while ($row = mysqli_fetch_assoc($display)) {
-                            echo '<div class="comment" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
-                            echo '<div style="display: flex; align-items: center;">';
+                if (mysqli_num_rows($display) != 0) {
+                    while ($row = mysqli_fetch_assoc($display)) {
+                        echo '<div class="comment" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                        echo '<div style="display: flex; align-items: center;">';
 
-                            // Display the user's image if it's available
-                            $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
-                            while ($imgRow = mysqli_fetch_array($getImg)) {
-                                if (!empty($imgRow['img'])) {
-                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($imgRow['img']) . '" alt="User Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;  margin-bottom: 15px;">';
-                                } else {
-                                    echo '<img src="avatar.jpg" alt="Default Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px; margin-bottom: 15px;">';
-                                }
-                            }
-
-                            echo "<p ><b>" . $row['user'] . "</b></p>";
-                            echo '</div>';
-                            echo '<div class="comment-text" style="padding-left: 20px;">';
-                            echo "<p style='color: black;'> " . $row['message'] . "</p>";
-                            echo "<p>Date: " . $row['date'] . "</p>";
-                            
-                            echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $row['id'] . ')">Reply</button>';
-                            echo '</div>';
-
-                            // Recursively display replies
-                            displayComments($db, $row['id'], 1);
-
-                            echo '</div>';
+                        // Display the user's image if it's available
+                        $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
+                        while ($imgRow = mysqli_fetch_array($getImg)) {
+                            $imgSrc = empty($imgRow['img']) ? 'avatar.jpg' : 'data:image/jpeg;base64,' . base64_encode($imgRow['img']);
+                            echo '<img src="' . $imgSrc . '" alt="User Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;  margin-bottom: 15px;">';
                         }
+
+                        echo "<p ><b>" . $row['user'] . "</b></p>";
+                        echo '</div>';
+                        echo '<div class="comment-text" style="padding-left: 20px;">';
+                        echo "<p style='color: black;'> " . $row['message'] . "</p>";
+                        echo "<p>Date: " . $row['date'] . "</p>";
+                        
+                        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $row['id'] . ')">Reply</button>';
+                        echo '</div>';
+
+                        // Recursively display replies
+                        displayComments($db, $row['id'], 1);
+
+                        echo '</div>';
                     }
-                    ?>
-                </div>
+                }
+                ?>
             </div>
+        </div>
 
+        <!-- Reply Modal -->
+        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reply Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frm1" method="post">
+                            <div class="form-group">
+                                <a href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
+                                    <?php
+                                    $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
+                                    while ($row = mysqli_fetch_array($getImg)) {
+                                        $imgSrc = empty($row['img']) ? '../../assets/img/image.png' : 'data:image/jpeg;base64,' . base64_encode($row['img']);
+                                        echo '<img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="' . $imgSrc . '" />';
+                                    }
+                                    ?>
+                                    <label class="text-bold ms-1 ps-1"><?= $user_name ?></label>
+                                </a>
+                            </div>
+                            <div class="form-group">
+                                <label for="replyMessage">Write your reply:</label>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                            </div>
+                            <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
+                            <button type="submit" name="btnreply" class="btn btn-info">Reply</button>
 
-<!-- Reply Modal -->
-<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reply Question</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form name="frm1" method="post">
-                    <div class="form-group">
-                        <a href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
                             <?php
-                            $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
-                            while ($row = mysqli_fetch_array($getImg)) {
-                                if (empty($row['img'])) {
-                                    echo '<img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="../../assets/img/image.png"/>';
+                            if (isset($_POST['btnreply'])) {
+                                $message = isset($_POST['replyMessage']) ? $_POST['replyMessage'] : '';
+                                $date = date("Y-m-d h:i:s A");
+                                $reply_id = isset($_POST['replyCommentId']) ? $_POST['replyCommentId'] : 0;
+
+                                if (strlen($message) >= 1 && strlen($message) <= 200) {
+                                    // Insert the reply into the database
+                                    $sql = "INSERT INTO tbl_forum (user, message, date, parent_id) VALUES ('$user_name', '$message', '$date', $reply_id)";
+                                    if ($savepost = mysqli_query($db, $sql)) {
+                                        echo "<script language=javascript>alert('Reply posted successfully!')</script>";
+                                        echo "<script>document.location='forum-form.php'</script>";
+                                    } else {
+                                        echo "<script language=javascript>alert('Reply unsuccessful.')</script>";
+                                        echo "<script>document.location='forum-form.php'</script>";
+                                    }
                                 } else {
-                                    echo ' <img class="avatar" style="height:45px; width:45px; margin-bottom: 7px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
+                                    echo "<script language=javascript>alert('Reply message must be between 1 and 200 characters.')</script>";
+                                    echo "<script>document.location='forum-form.php'</script>";
                                 }
                             }
                             ?>
-                            <label class="text-bold ms-1 ps-1"><?php echo $user_name ?></label>
-                        </a>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="replyMessage">Write your reply:</label>
-                        <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
-                    </div>
-                    <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
-
-                    <button type="submit" name="btnreply" class="btn btn-info">Reply</button>
-
-                    <?php
-                    if (isset($_POST['btnreply'])) {
-                        $message = isset($_POST['replyMessage']) ? $_POST['replyMessage'] : '';
-                        $date = date("Y-m-d h:i:s A");
-                        $reply_id = isset($_POST['replyCommentId']) ? $_POST['replyCommentId'] : 0;
-
-                        if (strlen($message) >= 1 && strlen($message) <= 200) {
-                            // Insert the reply into the database
-                            $sql = "INSERT INTO tbl_forum (user, message, date, parent_id) VALUES ('$user_name', '$message', '$date', $reply_id)";
-                            if ($savepost = mysqli_query($db, $sql)) {
-                                echo "<script language=javascript>alert('Reply posted successfully!')</script>";
-                                echo "<script>document.location='forum-form.php'</script>";
-                            } else {
-                                echo "<script language=javascript>alert('Reply unsuccessful.')</script>";
-                                echo "<script>document.location='forum-form.php'</script>";
-                            }
-                        } else {
-                            echo "<script language=javascript>alert('Reply message must be between 1 and 200 characters.')</script>";
-                            echo "<script>document.location='forum-form.php'</script>";
-                        }
-                    }
-                    ?>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-
-    <script>
-    function setReplyId(commentId) {
-        // Set the replyCommentId to the selected comment's comment_id
-        document.getElementById('replyCommentId').value = commentId;
-    }
-    </script>
+        <script>
+        function setReplyId(commentId) {
+            // Set the replyCommentId to the selected comment's comment_id
+            document.getElementById('replyCommentId').value = commentId;
+        }
+        </script>
     
-    <?php } ?>
+    <?php endif; ?>
 </main>
+
 
 <?php include "../../includes/footer.php"?>
 </body>
