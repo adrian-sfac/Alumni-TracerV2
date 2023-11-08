@@ -197,10 +197,12 @@ include '../../includes/head.php';
                                 echo "<script language=javascript>alert('Reply posted successfully!')</script>";
                                 echo "<script>document.location='forum-form.php'</script>";
                             } else {
-                                echo "<center>Reply unsuccessful.</center>";
+                                echo "<script language=javascript>alert('Reply unsuccessful.')</script>";
+                                echo "<script>document.location='forum-form.php'</script>";
                             }
                         } else {
-                            echo "Reply message must be between 1 and 200 characters.";
+                            echo "<script language=javascript>alert('Reply message must be between 1 and 200 characters.')</script>";
+                            echo "<script>document.location='forum-form.php'</script>";
                         }
                     }
                     ?>
