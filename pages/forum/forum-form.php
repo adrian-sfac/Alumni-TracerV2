@@ -51,7 +51,7 @@ include '../../includes/head.php';
                             <label class="text-bold ms-1 ps-1"><?php echo $user_name ?></span>
                         </a>
                         <div class="form-group mb-3 text-black">
-                            <label for="message">Your Question:</label>
+                            <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
                             <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
@@ -61,7 +61,7 @@ include '../../includes/head.php';
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-m-d h:i:s A");
+                        $date = date("Y-d-m h:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
@@ -70,56 +70,84 @@ include '../../includes/head.php';
                                   echo "<script languge=javascript>alert('Post success!')</script>";
                                   echo "<script> document.location='forum-form.php' </script>";
                                 } else {
-                                    echo "<center> Post unsuccessful. </center>";
+                                  echo "<script languge=javascript>alert('Post unsuccessful.')</script>";
+                                  echo "<script> document.location='forum-form.php' </script>";
                                 }
                             } else {
-                                echo "Message must be between 1 and 500 characters.";
+                                echo "<script languge=javascript>alert('Message must be between 1 and 500 characters.')</script>";
+                                echo "<script> document.location='forum-form.php' </script>";
                             }
                         }
                         ?>
                     </form>
                 </div>
             </div>
+    </div>
+    
+            <?php
 
-            <div class="card mt-3">
-                <div class="card-body" style="background-color: #fff; border:0px; border-radius:10px">
-                    <h4>Recent Questions</h4>           
-                    <table class="table" id="MyTable" style="background-color: #fff; border:0px; border-radius:10px">
-                        <tbody>
-                            <?php 
-                            
-                            $display = mysqli_query($db, "SELECT * FROM tbl_forum ORDER BY id DESC");
-                            
-                            if (mysqli_num_rows($display) != 0) {
-                                while ($row = mysqli_fetch_assoc($display)) {
-                                    if ($row['parent_id'] == 0) {
-                                        // This is a top-level comment
-                                        echo "<tr><td>".$row['id']."</td>";
-                                        echo "<td>".$row['user']."</td>";
-                                        echo "<td>".$row['message']."</td>";
-                                        echo "<td>".$row['date']."</td>";
-                                        echo '<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId('.$row['id'].')">Reply</button></td>';
-                                        echo "</tr>";
-                                    } else {
-                                        // This is a reply
-                                        // Display it under the corresponding top-level comment
-                                        echo "<tr><td style='margin-left: 20px;'>".$row['id']."</td>";
-                                        echo "<td>".$row['user']."</td>";
-                                        echo "<td>".$row['message']."</td>";
-                                        echo "<td>".$row['date']."</td>";
-                                        echo "</tr>";
-                                    }
+            // Function to display comments and their replies
+            function displayComments($db, $parentId = 0, $level = 0) {
+                $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
+
+                while ($comment = mysqli_fetch_assoc($comments)) {
+                    echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
+                    echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+                    echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
+                    echo "<p style='color: black;'>" . $comment['message'] . "</p>";
+                    echo "<p>Date: " . $comment['date'] . "</p>";
+                    echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+                    echo '</div>';
+
+                    // Recursively display replies
+                    displayComments($db, $comment['id'], $level + 1);
+
+                    echo '</div>';
+                }
+            }
+            ?>
+
+            <div class="card mt-4">
+                <div class="card-body" style="background-color: #fff; border: 0px; border-radius: 10px">
+                    <h4 style="margin-bottom: 15px;">Recent Questions</h4>
+                    <?php
+                    $display = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = 0 ORDER BY id DESC");
+
+                    if (mysqli_num_rows($display) != 0) {
+                        while ($row = mysqli_fetch_assoc($display)) {
+                            echo '<div class="comment" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                            echo '<div style="display: flex; align-items: center;">';
+
+                            // Display the user's image if it's available
+                            $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
+                            while ($imgRow = mysqli_fetch_array($getImg)) {
+                                if (!empty($imgRow['img'])) {
+                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($imgRow['img']) . '" alt="User Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;  margin-bottom: 15px;">';
+                                } else {
+                                    echo '<img src="avatar.jpg" alt="Default Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px; margin-bottom: 15px;">';
                                 }
                             }
-                            ?>
-                            <tr>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                            echo "<p ><b>" . $row['user'] . "</b></p>";
+                            echo '</div>';
+                            echo '<div class="comment-text" style="padding-left: 20px;">';
+                            echo "<p style='color: black;'> " . $row['message'] . "</p>";
+                            echo "<p>Date: " . $row['date'] . "</p>";
+                            
+                            echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $row['id'] . ')">Reply</button>';
+                            echo '</div>';
+
+                            // Recursively display replies
+                            displayComments($db, $row['id'], 1);
+
+                            echo '</div>';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
-        </div>
-    </div>
+
+
 
 <!-- Reply Modal -->
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
