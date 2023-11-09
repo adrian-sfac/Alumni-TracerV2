@@ -26,7 +26,7 @@ include '../../includes/head.php';
         $admin_id = $_SESSION['userid'];
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
                 <h3 class="mb-0 text-white">Discussion Forum</h3>
@@ -83,63 +83,103 @@ include '../../includes/head.php';
     
         <?php
 
-        // Function to display comments and their replies
-        function displayComments($db, $parentId = 0, $level = 0) {
-            $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
+// Function to display comments and their replies
+function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+    $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
-            while ($comment = mysqli_fetch_assoc($comments)) {
-                echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-                echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
-                echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
-                echo "<p style='color: black;'>" . $comment['message'] . "</p>";
-                echo "<p>Date: " . $comment['date'] . "</p>";
-                echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+    while ($comment = mysqli_fetch_assoc($comments)) {
+        echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
+        echo "<p style='color: black;'>" . $comment['message'] . "</p>";
+        echo "<p>Date: " . $comment['date'] . "</p>";
+
+        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+
+        // Add the delete button for the comment
+        if ($comment['user'] == $user_name) {
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
+        }
+
+        echo '</div>';
+
+        // Recursively display replies
+        displayComments($db, $comment['id'], $level + 1, $user_name);
+
+        echo '</div>';
+    }
+}
+
+?>
+
+<div class="card mt-4">
+    <div class="card-body" style="background-color: #fff; border: 0px; border-radius: 10px">
+        <h4 style="margin-bottom: 15px;">Recent Questions</h4>
+        <?php
+        $display = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = 0 ORDER BY id DESC");
+
+        if (mysqli_num_rows($display) != 0) {
+            while ($row = mysqli_fetch_assoc($display)) {
+                echo '<div class="comment" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div style="display: flex; align-items: center;">';
+
+                // Display the user's image if it's available
+                $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
+                while ($imgRow = mysqli_fetch_array($getImg)) {
+                    $imgSrc = empty($imgRow['img']) ? 'avatar.jpg' : 'data:image/jpeg;base64,' . base64_encode($imgRow['img']);
+                    echo '<img src="' . $imgSrc . '" alt="User Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;  margin-bottom: 15px;">';
+                }
+
+                echo "<p ><b>" . $row['user'] . "</b></p>";
+                echo '</div>';
+                echo '<div class="comment-text" style="padding-left: 20px;">';
+                echo "<p style='color: black;'> " . $row['message'] . "</p>";
+                echo "<p>Date: " . $row['date'] . "</p>";
+
+                echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $row['id'] . ')">Reply</button>';
+
+                // Add the delete button for the comment
+                if ($row['user'] == $user_name) {
+                    echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
+                }
+
                 echo '</div>';
 
                 // Recursively display replies
-                displayComments($db, $comment['id'], $level + 1);
+                displayComments($db, $row['id'], 1, $user_name);
 
                 echo '</div>';
             }
         }
         ?>
+    </div>
+</div>
 
-        <div class="card mt-4">
-            <div class="card-body" style="background-color: #fff; border: 0px; border-radius: 10px">
-                <h4 style="margin-bottom: 15px;">Recent Questions</h4>
-                <?php
-                $display = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = 0 ORDER BY id DESC");
-
-                if (mysqli_num_rows($display) != 0) {
-                    while ($row = mysqli_fetch_assoc($display)) {
-                        echo '<div class="comment" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
-                        echo '<div style="display: flex; align-items: center;">';
-
-                        // Display the user's image if it's available
-                        $getImg = mysqli_query($db, "SELECT img FROM tbl_super_ad WHERE admin_id = '$admin_id'");
-                        while ($imgRow = mysqli_fetch_array($getImg)) {
-                            $imgSrc = empty($imgRow['img']) ? 'avatar.jpg' : 'data:image/jpeg;base64,' . base64_encode($imgRow['img']);
-                            echo '<img src="' . $imgSrc . '" alt="User Avatar" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;  margin-bottom: 15px;">';
-                        }
-
-                        echo "<p ><b>" . $row['user'] . "</b></p>";
-                        echo '</div>';
-                        echo '<div class="comment-text" style="padding-left: 20px;">';
-                        echo "<p style='color: black;'> " . $row['message'] . "</p>";
-                        echo "<p>Date: " . $row['date'] . "</p>";
-                        
-                        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $row['id'] . ')">Reply</button>';
-                        echo '</div>';
-
-                        // Recursively display replies
-                        displayComments($db, $row['id'], 1);
-
-                        echo '</div>';
-                    }
+<script>
+    function deleteComment(commentId) {
+        // Send an AJAX request to delete_comment.php
+        $.ajax({
+            type: 'POST',
+            url: 'userData/ctrl-delete-comment.php',
+            data: { comment_id: commentId },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    // Reload the page or update the comment section
+                    alert('Comment successfully deleted.');
+                    location.reload();
+                } else {
+                    // Handle the error, you can show an alert or update the UI accordingly
+                    alert('Failed to delete comment: ' + response.message);
                 }
-                ?>
-            </div>
-        </div>
+            },
+            error: function() {
+                // Handle the AJAX error
+                alert('Failed to delete comment. Please try again.');
+            }
+        });
+    }
+</script>
 
         <!-- Reply Modal -->
         <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
