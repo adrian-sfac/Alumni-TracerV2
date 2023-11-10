@@ -543,11 +543,17 @@
         
 
         <hr class="horizontal light mt-1 mb-1">
-        <li class="nav-item">
-          
+            <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#others" class="nav-link text-white " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons">
+                menu
+              </i>
+            </div>
+            <span class="nav-link-text ms-2 ps-1">Others</span>
+          </a>
+          <div class="collapse " id="others">
             <ul class="nav ">
-              
-            
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../alumni/alumni-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -558,10 +564,17 @@
                   <span class="nav-link-text ms-2 ps-1">Alumni Form Lists</span>
                 </a>
               </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
+              <!-- <li class="nav-item ">
+                <a class="nav-link text-white " href="../alumni-officer/officer-list.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons">
+                      toc
+                    </i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Alumni Officer Lists</span>
+                </a>
+              </li> -->
+              <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="bi bi-bank"></i>
@@ -569,7 +582,7 @@
                   <span class="nav-link-text ms-2 ps-1">Donation</span>
                 </a>
               </li>
-        <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link text-white " href="../forum/forum-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="bi bi-chat-left-dots-fill"></i>
@@ -577,6 +590,9 @@
                   <span class="nav-link-text ms-2 ps-1">Forum</span>
                 </a>
               </li>
+            </ul>
+          </div>
+        </li>
 
       </ul>
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -650,11 +666,17 @@
         </li>
 
         <hr class="horizontal light mt-1 mb-1">
-        <li class="nav-item">
-          
+            <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#others" class="nav-link text-white " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons">
+                menu
+              </i>
+            </div>
+            <span class="nav-link-text ms-2 ps-1">Others</span>
+          </a>
+          <div class="collapse " id="others">
             <ul class="nav ">
-              
-            
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
