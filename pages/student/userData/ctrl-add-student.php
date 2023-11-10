@@ -4,7 +4,6 @@ require '../../../includes/conn.php';
 
 if (isset($_POST['submit'])) {
 
-  $stud_no    = mysqli_real_escape_string($db, $_POST['stud_no']);
   $firstname    = mysqli_real_escape_string($db, $_POST['firstname']);
   $middlename    = mysqli_real_escape_string($db, $_POST['middlename']);
   $lastname    = mysqli_real_escape_string($db, $_POST['lastname']);
@@ -16,12 +15,14 @@ if (isset($_POST['submit'])) {
 
   if ($password == $confirm_pass) {
     $hashedPwd = password_hash($confirm_pass, PASSWORD_DEFAULT);
-    $insertStudent = mysqli_query($db, "INSERT INTO tbl_student (stud_no, firstname, middlename, lastname, email, username, password) VALUES ('$stud_no','$firstname','$middlename' , '$lastname', '$email', '$username', '$hashedPwd')") or die(mysqli_error($db));
-
-    $_SESSION['studAdded'] = 'Student Successfully Added';
-    header("location: ../../student/add_student.php");
+    $insertStudent = mysqli_query($db, "INSERT INTO tbl_student (firstname, middlename, lastname, email, username, password) VALUES ('$firstname','$middlename', '$lastname', '$email', '$username', '$hashedPwd')") or die(mysqli_error($db));
+    $_SESSION['Student_added'] = 'Student Successfully Added!';
+    header("location: ../add-student.php");
   } else {
-    $_SESSION['notMatch'] = 'Password does not match';
-    header("location: ../../student/add_student.php");
+    $_SESSION['Student_notAdded'] = 'Password does not match';
+    header("location: ../add-student.php");
   }
+} else {
+  $_SESSION['usernameExist'] = true;
+  header("location: ../form.php");
 }

@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
   $numrow3  = $alumni->num_rows;
 
   $student = $db->query("SELECT * FROM tbl_student LEFT JOIN tbl_student USING(student_id) WHERE email = '$email'");
-  $numrow3  = $student->num_rows;
+  $numrow4  = $student->num_rows;
 
 
   if ($numrow > 0) {

@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
   if ($password == $confirm_pass) {
     $hashedPwd = password_hash($confirm_pass, PASSWORD_DEFAULT);
     $insertStudent = mysqli_query($db, "INSERT INTO tbl_registrar (firstname, middlename, lastname, email, username, password) VALUES ('$firstname','$middlename', '$lastname', '$email', '$username', '$hashedPwd')") or die(mysqli_error($db));
-    $_SESSION['Registrar_added'] = 'Registrar Successfully Added !';
+    $_SESSION['Registrar_added'] = 'Registrar Successfully Added!';
     header("location: ../add-registrar.php");
   } else {
     $_SESSION['Registrar_notAdded'] = 'Password does not match';

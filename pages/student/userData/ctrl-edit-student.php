@@ -67,7 +67,7 @@ if (isset($_POST['changepass'])) {
             if ($password == $confirmPass) {
                 $hashedPwd = password_hash($confirmPass, PASSWORD_DEFAULT);
 
-                $updatePass = mysqli_query($db, " UPDATE tbl_studen SET password='$hashedPwd' WHERE student_id = '$student_id'") or die(mysqli_error($db));
+                $updatePass = mysqli_query($db, " UPDATE tbl_student SET password='$hashedPwd' WHERE student_id = '$student_id'") or die(mysqli_error($db));
                 $_SESSION['successPass'] = true;
                 header("location: ../edit-student.php");
             } else {
