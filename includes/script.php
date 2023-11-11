@@ -13,7 +13,7 @@
 <script src="../../assets/js/plugins/jkanban/jkanban.js"></script>
 <script src="../../assets/js/custom.js"></script>
 <script src="../../assets/js/sweetalert.js"></script>
-<script src="../../assets/js/plugins/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!--  Plugin for the Wizard -->
 <script src="../../assets/js/gsdk-bootstrap-wizard.js"></script>

@@ -202,6 +202,16 @@
                   <span class="nav-link-text ms-2 ps-1">Alumni Form Lists</span>
                 </a>
               </li>
+              <li class="nav-item ">
+                <a class="nav-link text-white " href="../feedback/feedback-display.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons">
+                      toc
+                    </i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Feedback Lists</span>
+                </a>
+              </li>
               <!-- <li class="nav-item ">
                 <a class="nav-link text-white " href="../alumni-officer/officer-list.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -432,6 +442,16 @@
                     </i>
                   </div>
                   <span class="nav-link-text ms-2 ps-1">Alumni Form Lists</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link text-white " href="../feedback/feedback-display.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons">
+                      toc
+                    </i>
+                  </div>
+                  <span class="nav-link-text ms-2 ps-1">Feedback Lists</span>
                 </a>
               </li>
               <!-- <li class="nav-item ">
@@ -665,7 +685,15 @@
           </div>
         </li>
 
-        <li class="nav-item">
+      <li class="nav-item">
+                <a class="nav-link text-white " href="../feedback/feedback-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-0 ps-1">Feedback Form</span>
+                </a>
+              </li>
+      <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="bi bi-bank"></i>
@@ -752,6 +780,14 @@ if ($num > 0) {
           </a>
         </li>';
 } ?> 
+      <li class="nav-item">
+                <a class="nav-link text-white " href="../feedback/feedback-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-0 ps-1">Feedback Form</span>
+                </a>
+              </li>
       <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
