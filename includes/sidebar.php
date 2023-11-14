@@ -223,6 +223,14 @@
                 </a>
               </li> -->
               <li class="nav-item">
+                <a class="nav-link text-white " href="../job/job-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-1  ps-1">Add Job Form</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="bi bi-bank"></i>
@@ -464,6 +472,14 @@
                   <span class="nav-link-text ms-2 ps-1">Alumni Officer Lists</span>
                 </a>
               </li> -->
+              <li class="nav-item">
+                <a class="nav-link text-white " href="../job/job-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-1  ps-1">Add Job Form</span>
+                </a>
+              </li>
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -684,7 +700,15 @@
             </ul>
           </div>
         </li>
-
+      
+      <li class="nav-item">
+                <a class="nav-link text-white " href="../job/job-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-1  ps-1">Add Job Form</span>
+                </a>
+              </li>
       <li class="nav-item">
                 <a class="nav-link text-white " href="../feedback/feedback-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -709,7 +733,34 @@
                   <span class="nav-link-text ms-2 ps-1">Forum</span>
                 </a>
               </li>
-      </ul>
+      
+              </ul>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="fas fa-user-alt text-9xl"></i>
+                <p>Are you sure you want to Logout?</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
+                <button type="button" class="btn bg-gradient-danger">Logout</button>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
 
     <?php } else if ($_SESSION['role'] == "Alum Stud") {
             ?>
@@ -781,6 +832,14 @@ if ($num > 0) {
         </li>';
 } ?> 
       <li class="nav-item">
+                <a class="nav-link text-white " href="../job/job-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-1  ps-1">Add Job Form</span>
+                </a>
+              </li>
+      <li class="nav-item">
                 <a class="nav-link text-white " href="../feedback/feedback-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">sticky_note_2</i>
@@ -804,7 +863,34 @@ if ($num > 0) {
                   <span class="nav-link-text ms-2 ps-1">Forum</span>
                 </a>
               </li>
-      </ul>
+
+              </ul>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="fas fa-user-alt text-9xl"></i>
+                <p>Are you sure you want to Logout?</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
+                <button type="button" class="btn bg-gradient-danger">Logout</button>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
       
 
     <?php } ?>

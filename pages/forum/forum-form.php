@@ -32,7 +32,7 @@ include '../../includes/head.php';
     <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h3 class="mb-0 text-white">Discussion Forum</h3>
+                <h3 class="mb-0 text-white" style="font-family: sans-serif;">Discussion Forum</h3>
             </div>
             
             <div class="card-body">
@@ -295,7 +295,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
     <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h3 class="mb-0 text-white">Discussion Forum</h3>
+                <h3 class="mb-0 text-white" style="font-family: sans-serif;">Discussion Forum</h3>
             </div>
             
             <div class="card-body">
@@ -557,7 +557,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
     <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h3 class="mb-0 text-white">Discussion Forum</h3>
+                <h3 class="mb-0 text-white" style="font-family: sans-serif;">Discussion Forum</h3>
             </div>
             
             <div class="card-body">
@@ -819,7 +819,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
     <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h3 class="mb-0 text-white">Discussion Forum</h3>
+                <h3 class="mb-0 text-white" style="font-family: sans-serif;">Discussion Forum</h3>
             </div>
             
             <div class="card-body">
@@ -1080,7 +1080,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
     <div class="container mt-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h3 class="mb-0 text-white">Discussion Forum</h3>
+                <h3 class="mb-0 text-white" style="font-family: sans-serif;">Discussion Forum</h3>
             </div>
             
             <div class="card-body">
