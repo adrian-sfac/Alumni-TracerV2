@@ -8,7 +8,18 @@ include '../../includes/head.php';
 include "../../includes/script.php";
 ?>
 
-<?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Student" || $_SESSION['role'] == "Alum Stud") ?>
+<?php if ($_SESSION['role'] == "Super Administrator") {
+    $super_admin = mysqli_query($db, "SELECT * FROM tbl_super_ad WHERE username = '$username'");
+} else if ($_SESSION['role'] == "Admin") {
+    $admin = mysqli_query($db, "SELECT * FROM tbl_admin WHERE username = '$username'");
+} else if ($_SESSION['role'] == "Registrar") {
+    $registrar = mysqli_query($db, "SELECT * FROM tbl_registrar WHERE username = '$username'");
+} else if ($_SESSION['role'] == "Student") {
+    $student = mysqli_query($db, "SELECT * FROM tbl_student WHERE username = '$username'");
+} else if ($_SESSION['role'] == "Alum Stud") {
+    $alumni = mysqli_query($db, "SELECT * FROM tbl_alumni WHERE username = '$username'");
+}
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,7 +89,7 @@ include "../../includes/script.php";
                         <form method="post" action="submit-job.php" id="jobForm">
                             <div class="mb-3">
                                 <label for="name" class="form-label" style="color: black;">Name:</label>
-                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="name" placeholder="Your Name" required>
+                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="name" placeholder="Full name of the person who offers the job e.g. Juan" required>
                             </div>
 
                             <div class="mb-3">
@@ -89,6 +100,11 @@ include "../../includes/script.php";
                             <div class="mb-3">
                                 <label for="contact" class="form-label" style="color: black;">Contact No:</label>
                                 <input type="tel" class="form-control" name="contact" style="color: black;" placeholder="Your Contact Number" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="job_name" class="form-label" style="color: black;">Job Title:</label>
+                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="job_name" placeholder="Name of the Job" required>
                             </div>
 
                             <div class="mb-3">

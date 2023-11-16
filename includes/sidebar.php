@@ -610,6 +610,14 @@
                   <span class="nav-link-text ms-2 ps-1">Alumni Officer Lists</span>
                 </a>
               </li> -->
+              <li class="nav-item">
+                <a class="nav-link text-white " href="../job/job-form.php">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">sticky_note_2</i>
+                  </div>
+                  <span class="nav-link-text ms-1  ps-1">Add Job Form</span>
+                </a>
+              </li>
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -714,7 +722,7 @@
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">sticky_note_2</i>
                   </div>
-                  <span class="nav-link-text ms-0 ps-1">Feedback Form</span>
+                  <span class="nav-link-text ms-1 ps-1">Feedback Form</span>
                 </a>
               </li>
       <li class="nav-item">
@@ -818,7 +826,7 @@ if ($num > 0) {
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">sticky_note_2</i>
             </div>
-            <span class="nav-link-text ms-1">Edit Form</span>
+            <span class="nav-link-text ms-1 ps-1">Edit Form</span>
           </a>
         </li>';
 } else {
@@ -827,7 +835,7 @@ if ($num > 0) {
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">sticky_note_2</i>
             </div>
-            <span class="nav-link-text ms-1">Fill Up Form</span>
+            <span class="nav-link-text ms-1 ps-1">Fill Up Form</span>
           </a>
         </li>';
 } ?> 
@@ -844,7 +852,7 @@ if ($num > 0) {
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">sticky_note_2</i>
                   </div>
-                  <span class="nav-link-text ms-0 ps-1">Feedback Form</span>
+                  <span class="nav-link-text ms-1 ps-1">Feedback Form</span>
                 </a>
               </li>
       <li class="nav-item">
