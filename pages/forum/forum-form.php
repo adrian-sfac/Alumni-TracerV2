@@ -61,7 +61,7 @@ include '../../includes/head.php';
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-d-m h:i:s A");
+                        $date = date("Y-m-d H:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
@@ -324,7 +324,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-d-m h:i:s A");
+                        $date = date("Y-m-d H:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
@@ -586,7 +586,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-d-m h:i:s A");
+                        $date = date("Y-m-d H:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
@@ -848,7 +848,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-d-m h:i:s A");
+                        $date = date("Y-m-d H:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {
@@ -1109,7 +1109,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
                         date_default_timezone_set('Asia/Manila');
 
                         $message = isset($_POST['message']) ? $_POST['message'] : '';
-                        $date = date("Y-d-m h:i:s A");
+                        $date = date("Y-m-d H:i:s A");
 
                         if (isset($_POST['submit'])) {
                             if (strlen($message) >= 1 && strlen($message) <= 500) {

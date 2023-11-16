@@ -155,7 +155,8 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
                                 <div id="jobInfoModal' . $row['id'] . '" class="modal" style="display: none;">
                                     <div class="modal-content">
                                         <span class="close" style="margin-right: 10px;" onclick="closeJobInfo(' . $row['id'] . ')">&times;</span>
-                                        <strong span style="font-size: 22px;">' . $row['job_name'] . '</span></strong><br>
+                                        <strong span style="font-size: 22px;">' . $row['job_name'] . '</span></strong>
+                                        <a style="font-size: 18px;">(Posted on: ' . $row['date'] . ')</a><br>
                                         <span style="font-size: 18px; margin-left: 15px;"> <strong>Job Description:</strong> <br>' . $row['job_desc'] . '</span><br><br>
                                         <span style="font-size: 18px;">Offered by: <strong>' . $row['name'] . '</strong></span>
                                         <span style="font-size: 18px; margin-left: 40px; margin-top: 10px;">Email: '. $row['email'] .'</span>
