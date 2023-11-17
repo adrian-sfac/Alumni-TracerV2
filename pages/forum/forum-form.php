@@ -101,7 +101,9 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        } elseif ($_SESSION ['role'] == "Super Administrator") {
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
@@ -153,7 +155,9 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
                         // Add the delete button for the comment
                         if ($row['user'] == $user_name) {
-                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
+                        } elseif ($_SESSION ['role'] == "Super Administrator") {
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
                         }
 
                         echo '</div>';
@@ -195,6 +199,12 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
 
 <script>
+    function confirmDelete(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            deleteComment(commentId);
+        } else {
+        }
+    }
     function deleteComment(commentId) {
         // Send an AJAX request to delete_comment.php
         $.ajax({
@@ -364,7 +374,9 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        } elseif ($_SESSION ['role'] == "Admin") {
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
@@ -416,7 +428,9 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
                         // Add the delete button for the comment
                         if ($row['user'] == $user_name) {
-                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
+                        } elseif ($_SESSION ['role'] == "Admin") {
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
                         }
 
                         echo '</div>';
@@ -457,6 +471,13 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 </div>
 
 <script>
+    function confirmDelete(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            deleteComment(commentId);
+        } else {
+        }
+    }
+
     function deleteComment(commentId) {
         // Send an AJAX request to delete_comment.php
         $.ajax({
@@ -626,9 +647,8 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
-        }
-
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        } 
         echo '</div>';
 
         // Recursively display replies
@@ -678,7 +698,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
                         // Add the delete button for the comment
                         if ($row['user'] == $user_name) {
-                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
                         }
 
                         echo '</div>';
@@ -719,6 +739,12 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 </div>
 
 <script>
+    function confirmDelete(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            deleteComment(commentId);
+        } else {
+        }
+    }
     function deleteComment(commentId) {
         // Send an AJAX request to delete_comment.php
         $.ajax({
@@ -888,7 +914,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
@@ -940,7 +966,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
                         // Add the delete button for the comment
                         if ($row['user'] == $user_name) {
-                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
                         }
 
                         echo '</div>';
@@ -981,6 +1007,12 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 </div>
 
 <script>
+    function confirmDelete(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            deleteComment(commentId);
+        } else {
+        }
+    }
     function deleteComment(commentId) {
         // Send an AJAX request to delete_comment.php
         $.ajax({
@@ -1149,7 +1181,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
@@ -1201,8 +1233,8 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
                         // Add the delete button for the comment
                         if ($row['user'] == $user_name) {
-                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="deleteComment(' . $row['id'] . ')">Delete</button>';
-                        }
+                            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $row['id'] . ')">Delete</button>';
+                        } 
 
                         echo '</div>';
 
@@ -1242,6 +1274,12 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 </div>
 
 <script>
+    function confirmDelete(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            deleteComment(commentId);
+        } else {
+        }
+    }
     function deleteComment(commentId) {
         // Send an AJAX request to delete_comment.php
         $.ajax({
