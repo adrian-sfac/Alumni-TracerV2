@@ -138,7 +138,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
                     while ($row = $query->fetch_assoc()) {
                         echo '<div class="feedback" style="color: black; border: 1px solid black; padding: 10px; border-radius: 10px; margin-bottom: 15px;">';
                         echo '<strong><span style="margin-right: 50px; margin-left: 5px;">' . $row['job_name'] . '</span></strong>';
-                        echo '<span style="margin-left: 60%; margin-right: 20px;">Offered by: <strong>' . $row['name'] . '</strong></span>';
+                        echo '<span style="margin-left: 50%; margin-right: 20px;">Offered by: <strong>' . $row['name'] . '</strong></span>';
 
                         // Limiting job description words
                         // $jobDescWords = explode(' ', $row['job_desc']);

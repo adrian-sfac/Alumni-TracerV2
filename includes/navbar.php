@@ -64,7 +64,7 @@
 
 <div class="topnav" style="margin-left: 42.8%;" id="myTopnav">
   <a href="../dashboard/dashboard.php">Home</a>
-  <a href="#news">News</a>
+  <a href="../news/news-display.php">News</a>
   <a href="../job/job-display.php">Jobs</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
