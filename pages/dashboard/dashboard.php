@@ -16,13 +16,10 @@
 <html lang="en">
 
 <?php
-include '../../includes/conn.php';
 include '../../includes/session.php';
-// End Session
 include '../../includes/head.php';
 include '../../includes/graph-data.php';
 include '../../includes/script.php';
-
 ?>
 
 <title>
@@ -1541,8 +1538,6 @@ $alumni_query =
     </div>
   </main>
   <?php include "../../includes/fixed-plugin.php"?>
-  <!--   Core JS Files   -->
-  <?php include "../../includes/script.php"?>
 </body>
 
 </html>
