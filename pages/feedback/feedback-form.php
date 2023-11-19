@@ -28,7 +28,7 @@ include "../../includes/sidebar.php";
                 <div class="card">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4" style="font-family: sans-serif;">Feedback Form</h3>
-                        <form method="post" action="" id="feedbackForm">
+                        <form method="post" action="" id="feedbackForm" onsubmit="return confirm('Are you sure you want to submit the feedback?');">
                             <a href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
                                 <?php 
                                 $getImg = mysqli_query($db, "SELECT img FROM tbl_alumni WHERE alumni_id = '$alumni_id'");
