@@ -17,10 +17,17 @@
           
       <div class="mt-3">
         <h6 class="mb-0">Developers</h6>
-        <p class="text-sm">Batch 2022-2023</p>
+        <p class="text-sm">Batch 2022-2024</p>
       </div>
       <div class="card-body p-3">
       <ul class="list-group">
+<li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0">
+<div class="avatar me-3">
+<a href="https://www.linkedin.com/in/adrian-tugade-5a479527a/" target="_blank"><img src="../../assets/img/adrian.jpg" alt="kal" class="border-radius-lg shadow" ></a>
+</div>
+<div class="d-flex align-items-start flex-column justify-content-center">
+<a href="https://www.linkedin.com/in/adrian-tugade-5a479527a/" target="_blank"><h6 class="mb-0 text-sm">Adrian Tugade</h6></a>
+<p class="mb-0 text-xs">Lead Programmer</p>
 <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0">
 <div class="avatar me-3">
 <a href="https://www.linkedin.com/in/larry-gomez-jr-1bb173220/" target="_blank"><img src="../../assets/img/larry.jpg" alt="kal" class="border-radius-lg shadow" ></a>

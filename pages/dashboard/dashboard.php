@@ -16,11 +16,12 @@
 <html lang="en">
 
 <?php
-
+include '../../includes/conn.php';
 include '../../includes/session.php';
 // End Session
 include '../../includes/head.php';
 include '../../includes/graph-data.php';
+include '../../includes/script.php';
 
 ?>
 
@@ -268,6 +269,86 @@ include '../../includes/graph-data.php';
   </div>
 </div>
 </div>
+
+
+<div class="col-lg-4 col-md-5 mt-2 mb-5 mx-auto">
+    <div class="card z-index-2">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+            <div class="bg border-radius-lg py-3 pe-1" style="background: #FFFAAB;">
+                <div class="chart">
+                    <canvas id="chart-bars" class="chart-canvas" style="display: block; box-sizing: border-box; width: 268.7px;" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="mb-0">Satisfactory Ratings</h6>
+            <p class="text-sm">SFAC Feedback Rating System</p>
+            <hr class="dark horizontal">
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $sql = "SELECT rating FROM tbl_feedback";
+        $result = $db->query($sql);
+
+        $feedbackData = [0, 0, 0, 0, 0];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rating = $row['rating'];
+                $feedbackData[$rating - 1]++;
+            }
+        }
+        ?>
+
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["5", "4", "3", "2", "1"],
+                datasets: [
+                    {
+                        label: "Feedback Ratings",
+                        data: <?php echo json_encode(array_reverse($feedbackData)); ?>,
+                        backgroundColor: '#FEE12B',
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                        borderWidth: 1,
+                        categoryPercentage: 0.7,
+                        barPercentage: 0.9, 
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: <?php echo max($feedbackData); ?>,
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 15, 
+                        },
+                    },
+                },
+                indexAxis: 'y',
+            },
+        });
+    });
+</script>
 
           <div class="row">
           <div class="col-xl-3 col-sm-6 mb-xl-0">
@@ -882,10 +963,17 @@ $alumni_query =
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs"> <?php echo $alumni_total; ?> </span>
+                <span class="text-xs"> <?php echo $alumni_total; ?></span>
               </td>
               </tr>
-
+              <td>
+                    <div class="d-flex px-2 py-4">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                  </td>
+                  </tr> 
             </tbody>
             </table>
           </div>
@@ -895,6 +983,85 @@ $alumni_query =
   </div>
 </div>
 </div>
+
+<div class="col-lg-4 col-md-5 mt-2 mb-5 mx-auto">
+    <div class="card z-index-2">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+            <div class="bg border-radius-lg py-3 pe-1" style="background: #FFFAAB;">
+                <div class="chart">
+                    <canvas id="chart-bars" class="chart-canvas" style="display: block; box-sizing: border-box; width: 268.7px;" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="mb-0">Satisfactory Ratings</h6>
+            <p class="text-sm">SFAC Feedback Rating System</p>
+            <hr class="dark horizontal">
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $sql = "SELECT rating FROM tbl_feedback";
+        $result = $db->query($sql);
+
+        $feedbackData = [0, 0, 0, 0, 0];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rating = $row['rating'];
+                $feedbackData[$rating - 1]++;
+            }
+        }
+        ?>
+
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["5", "4", "3", "2", "1"],
+                datasets: [
+                    {
+                        label: "Feedback Ratings",
+                        data: <?php echo json_encode(array_reverse($feedbackData)); ?>,
+                        backgroundColor: '#FEE12B',
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                        borderWidth: 1,
+                        categoryPercentage: 0.7,
+                        barPercentage: 0.9,
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: <?php echo max($feedbackData); ?>,
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 15, 
+                        },
+                    },
+                },
+                indexAxis: 'y',
+            },
+        });
+    });
+</script>
 
           <div class="row">
           <div class="col-xl-3 col-sm-6 mb-xl-0">
