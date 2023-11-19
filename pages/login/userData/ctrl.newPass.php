@@ -23,7 +23,7 @@ $email = $_SESSION['accept'];
     $alumni = $db->query("SELECT * FROM tbl_form LEFT JOIN tbl_alumni USING(alumni_id) WHERE email = '$email'");
     $numrow3  = $alumni->num_rows;
 
-    $student = $db->query("SELECT * FROM tbl_student LEFT JOIN tbl_student USING(student_id) WHERE email = '$email'");
+    $student = $db->query("SELECT * FROM tbl_student WHERE email = '$email'");
     $numrow4  = $student->num_rows;
 
 

@@ -17,7 +17,7 @@ if (isset($_POST['reset']) && !empty($_POST['email'])) {
     $email = $db->real_escape_string($_POST['email']);
     // UNION ALL possible email
 
-    $query = $db->query("SELECT email FROM tbl_admin WHERE email = '$email' UNION ALL SELECT email FROM tbl_registrar WHERE email = '$email' UNION ALL SELECT email FROM tbl_form WHERE email = '$email' UNION SELECT email FROM tbl_super_ad WHERE email = '$email'");
+    $query = $db->query("SELECT email FROM tbl_admin WHERE email = '$email' UNION ALL SELECT email FROM tbl_registrar WHERE email = '$email' UNION ALL SELECT email FROM tbl_form WHERE email = '$email' UNION SELECT email FROM tbl_super_ad WHERE email = '$email' UNION ALL SELECT email FROM tbl_student WHERE email = '$email'");
 
 
     if ($query-> num_rows > 0) {
@@ -59,15 +59,15 @@ try {
     //Server settings
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.sendgrid.net';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'larrygomez689@gmail.com';                     //SMTP username
-    $mail->Password   = 'cgiqlfdxjfdgrpgb';                               //SMTP password
+    $mail->Username   = 'apikey';                     //SMTP username
+    $mail->Password   = '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';                               //SMTP password
     $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('larrygomez689@gmail.com', 'Larry');
+    $mail->setFrom('saintfrancisalumnisystem@gmail.com', 'SFAC Alumni System');
     $mail->addAddress($email);     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');

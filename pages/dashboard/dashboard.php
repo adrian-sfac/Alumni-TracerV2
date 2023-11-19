@@ -268,7 +268,7 @@ include '../../includes/script.php';
 </div>
 
 
-<div class="col-lg-4 col-md-5 mt-2 mb-5 mx-auto">
+<div class="col-lg-4 col-md-2 mt-2 mb-5 mx-auto">
     <div class="card z-index-2">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
             <div class="bg border-radius-lg py-3 pe-1" style="background: #FFFAAB;">

@@ -30,10 +30,10 @@ if (isset($_POST['sendEmail']) && $_SERVER['REQUEST_METHOD'] == "POST") {
                //Server settings
                $mail->SMTPDebug = 0;                      //Enable verbose debug output
                $mail->isSMTP();                                            //Send using SMTP
-               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+               $mail->Host       = 'smtp.sendgrid.net';                     //Set the SMTP server to send through
                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-               $mail->Username   = 'saintfrancisalumnisystem@gmail.com';                     //SMTP username
-               $mail->Password   = 'obrm vody lupg lshy';                               //SMTP password
+               $mail->Username   = 'apikey';                     //SMTP username
+               $mail->Password   = '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';                               //SMTP password
                $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
                $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
            
