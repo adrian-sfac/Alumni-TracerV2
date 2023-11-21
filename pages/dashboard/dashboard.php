@@ -19,7 +19,7 @@
 include '../../includes/session.php';
 include '../../includes/head.php';
 include '../../includes/graph-data.php';
-include '../../includes/script.php';
+
 ?>
 
 <title>
@@ -1534,10 +1534,10 @@ $alumni_query =
 
         <?php }?>
 
-      <?php include "../../includes/footer.php"?>
+      <?php include "../../includes/footer.php";?>
     </div>
   </main>
-  <?php include "../../includes/fixed-plugin.php"?>
+  <?php include "../../includes/fixed-plugin.php";?>
 </body>
-
+<?php include '../../includes/script.php';?>
 </html>
