@@ -12,21 +12,13 @@ require '../../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 
 if (isset($_POST['sendEmail']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+    // Fetch all alumni
+    $result = $db->query("SELECT * FROM tbl_form");
 
-    foreach ($_POST['checkRow'] as $key => $value) {
-           $form_id = $_POST['checkRow'][$key];
-           
-              $form_id = $db->real_escape_string($form_id);;
-        // query
-               $query = $db->query("SELECT * FROM tbl_form WHERE form_id = '$form_id'");
-           
- if ($query->num_rows > 0) {
-   $row = $query->fetch_array();
-           
-                   $mail = new PHPMailer(true);
-           
-           
-           try {
+    while ($row = $result->fetch_assoc()) {
+        $mail = new PHPMailer(true);
+
+        try {
                //Server settings
                $mail->SMTPDebug = 0;                      //Enable verbose debug output
                $mail->isSMTP();                                            //Send using SMTP
@@ -69,17 +61,17 @@ if (isset($_POST['sendEmail']) && $_SERVER['REQUEST_METHOD'] == "POST") {
            } catch (Exception $e) {
                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            } 
-                   } else {
+                   } 
                       
-                    header("location: ../alumni-form.php");
-                   }
+    header("location: ../alumni-form.php");
+                   
            
            
            
         
            
     }
-} 
+
 
 
 
