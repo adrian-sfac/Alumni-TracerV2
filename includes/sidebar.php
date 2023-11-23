@@ -11,16 +11,6 @@
     <?php
     if ($_SESSION['role'] == "Super Administrator") { ?>
       <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <hr class="horizontal light mt-3 mb-1">
         <li class="nav-item mb-2 mt-0">
           <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
             <?php 
@@ -52,6 +42,33 @@
             </ul>
           </div>
         </li>
+
+        <hr class="horizontal light mt-3 mb-2">
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/news/news-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">News Updates</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        
 
         <hr class="horizontal light mt-1 mb-1">
         <li class="nav-item">
@@ -287,17 +304,7 @@
       <?php } else if ($_SESSION['role'] == "Admin") {
             ?>
       <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <hr class="horizontal light mt-3 mb-1">
-        <li class="nav-item mb-2 mt-0">
+      <li class="nav-item mb-2 mt-0">
           <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
             <?php 
             $getImg = mysqli_query($db, "SELECT img FROM tbl_admin WHERE ad_id = '$ad_id'");
@@ -327,6 +334,34 @@
             </ul>
           </div>
         </li>
+        
+        <hr class="horizontal light mt-3 mb-2">
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/news/news-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">News Updates</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        
+        
 
         <hr class="horizontal light mt-1 mb-1">
         <li class="nav-item">
@@ -550,17 +585,7 @@
     <?php } else if ($_SESSION['role'] == "Registrar") {
             ?>
       <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <hr class="horizontal light mt-3 mb-1">
-        <li class="nav-item mb-2 mt-0">
+      <li class="nav-item mb-2 mt-0">
           <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
             <?php 
             $getImg = mysqli_query($db, "SELECT img FROM tbl_registrar WHERE reg_id = '$reg_id'");
@@ -590,8 +615,31 @@
             </ul>
           </div>
         </li>
-
-        
+      <hr class="horizontal light mt-3 mb-2">
+      <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/news/news-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">News Updates</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>       
         
 
         <hr class="horizontal light mt-1 mb-1">
@@ -684,17 +732,7 @@
     <?php } else if ($_SESSION['role'] == "Student") {
             ?>
       <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <hr class="horizontal light mt-3 mb-1">
-        <li class="nav-item mb-2 mt-0">
+      <li class="nav-item mb-2 mt-0">
           <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
             <?php 
             $getImg = mysqli_query($db, "SELECT img FROM tbl_student WHERE student_id = '$student_id'");
@@ -725,6 +763,34 @@
           </div>
         </li>
       
+      <hr class="horizontal light mt-3 mb-2">
+      <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/news/news-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">News Updates</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        
+      
+      <hr class="horizontal light mt-2 mb-1">
       <li class="nav-item">
                 <a class="nav-link text-white " href="../job/job-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -781,17 +847,7 @@
     <?php } else if ($_SESSION['role'] == "Alum Stud") {
             ?>
       <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboard/dashboard.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <hr class="horizontal light mt-3 ">
-        <li class="nav-item mt-0">
+      <li class="nav-item mt-0">
           <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
             <?php 
             $getImg = mysqli_query($db, "SELECT img FROM tbl_alumni WHERE alumni_id = '$alumni_id'");
@@ -820,6 +876,33 @@
             </ul>
           </div>
         </li>
+      <hr class="horizontal light mt-3 ">
+
+      <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/news/news-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">News Updates</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        
         <hr class="horizontal light mb-1">
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Form</h6>
