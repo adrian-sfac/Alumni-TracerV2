@@ -52,7 +52,7 @@ include '../../includes/head.php';
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
-                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
+                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
                         <button type="submit-responsive" id="submit" name="submit" class="btn btn-dark">Post</button>
@@ -258,7 +258,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                             </div>
                             <div class="form-group">
                                 <label for="replyMessage">Write your reply:</label>
-                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
                             </div>
                             <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
@@ -327,7 +327,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
-                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
+                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
                         <button type="submit-responsive" id="submit" name="submit" class="btn btn-dark">Post</button>
@@ -532,7 +532,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                             </div>
                             <div class="form-group">
                                 <label for="replyMessage">Write your reply:</label>
-                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
                             </div>
                             <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
@@ -601,7 +601,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
-                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
+                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
                         <button type="submit-responsive" id="submit" name="submit" class="btn btn-dark">Post</button>
@@ -803,7 +803,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                             </div>
                             <div class="form-group">
                                 <label for="replyMessage">Write your reply:</label>
-                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
                             </div>
                             <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
@@ -872,7 +872,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
-                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
+                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
                         <button type="submit-responsive" id="submit" name="submit" class="btn btn-dark">Post</button>
@@ -1074,7 +1074,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                             </div>
                             <div class="form-group">
                                 <label for="replyMessage">Write your reply:</label>
-                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
                             </div>
                             <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
@@ -1142,7 +1142,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         </a>
                         <div class="form-group mb-3 text-black">
                             <label for="message" style="color: black; font-size: 16px;">Your Question:</label>
-                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
+                            <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="message" id="message" required></textarea>
                         </div>
 
                         <button type="submit-responsive" id="submit" name="submit" class="btn btn-dark">Post</button>
@@ -1344,7 +1344,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                             </div>
                             <div class="form-group">
                                 <label for="replyMessage">Write your reply:</label>
-                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
+                                <textarea class="form-control" style="resize:none; border: 1px solid black; border-radius: 5px; padding: 10px;" rows="5" name="replyMessage" id="replyMessage" required></textarea>
                             </div>
                             <input type="hidden" id="replyCommentId" name="replyCommentId" value="0">
 
