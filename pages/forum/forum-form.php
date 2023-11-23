@@ -87,33 +87,35 @@ include '../../includes/head.php';
         <?php
 
 // Function to display comments and their replies
-function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel = 7) {
     $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
     while ($comment = mysqli_fetch_assoc($comments)) {
         echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 5px;">';
         echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
         echo "<p style='color: black;'>" . $comment['message'] . "</p>";
         echo "<p>Date: " . $comment['date'] . "</p>";
 
-        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        // Display the reply button only for comments up to level 9
+        if ($level <= $maxLevel) {
+            echo '<button type="button" class="btn btn-info" style="margin-right: 20px;" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        }
 
         // Add the delete button for the comment
-        if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
-        } elseif ($_SESSION ['role'] == "Super Administrator") {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        if ($comment['user'] == $user_name || $_SESSION['role'] == "Super Administrator") {
+            echo '<button type="button" class="btn btn-danger" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
 
         // Recursively display replies
-        displayComments($db, $comment['id'], $level + 1, $user_name);
+        displayComments($db, $comment['id'], $level + 1, $user_name, $maxLevel);
 
         echo '</div>';
     }
 }
+
 
 ?>
 
@@ -138,7 +140,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
-                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
                         echo '<div style="display: flex; align-items: center;">';
 
                         // Display the user's image if it's available
@@ -360,29 +362,30 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
         <?php
 
 // Function to display comments and their replies
-function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel = 7) {
     $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
     while ($comment = mysqli_fetch_assoc($comments)) {
         echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 5px;">';
         echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
         echo "<p style='color: black;'>" . $comment['message'] . "</p>";
         echo "<p>Date: " . $comment['date'] . "</p>";
 
-        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        // Display the reply button only for comments up to level 9
+        if ($level <= $maxLevel) {
+            echo '<button type="button" class="btn btn-info" style="margin-right: 20px;" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        }
 
         // Add the delete button for the comment
-        if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
-        } elseif ($_SESSION ['role'] == "Admin") {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        if ($comment['user'] == $user_name || $_SESSION['role'] == "Admin") {
+            echo '<button type="button" class="btn btn-danger" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
 
         // Recursively display replies
-        displayComments($db, $comment['id'], $level + 1, $user_name);
+        displayComments($db, $comment['id'], $level + 1, $user_name, $maxLevel);
 
         echo '</div>';
     }
@@ -411,7 +414,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
-                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
                         echo '<div style="display: flex; align-items: center;">';
 
                         // Display the user's image if it's available
@@ -633,26 +636,30 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
         <?php
 
 // Function to display comments and their replies
-function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel = 7) {
     $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
     while ($comment = mysqli_fetch_assoc($comments)) {
         echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 5px;">';
         echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
         echo "<p style='color: black;'>" . $comment['message'] . "</p>";
         echo "<p>Date: " . $comment['date'] . "</p>";
 
-        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        // Display the reply button only for comments up to level 9
+        if ($level <= $maxLevel) {
+            echo '<button type="button" class="btn btn-info" style="margin-right: 20px;" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        }
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
-        } 
+            echo '<button type="button" class="btn btn-danger" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+        }
+
         echo '</div>';
 
         // Recursively display replies
-        displayComments($db, $comment['id'], $level + 1, $user_name);
+        displayComments($db, $comment['id'], $level + 1, $user_name, $maxLevel);
 
         echo '</div>';
     }
@@ -681,7 +688,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
-                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
                         echo '<div style="display: flex; align-items: center;">';
 
                         // Display the user's image if it's available
@@ -900,27 +907,30 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
         <?php
 
 // Function to display comments and their replies
-function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel = 7) {
     $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
     while ($comment = mysqli_fetch_assoc($comments)) {
         echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 5px;">';
         echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
         echo "<p style='color: black;'>" . $comment['message'] . "</p>";
         echo "<p>Date: " . $comment['date'] . "</p>";
 
-        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        // Display the reply button only for comments up to level 9
+        if ($level <= $maxLevel) {
+            echo '<button type="button" class="btn btn-info" style="margin-right: 20px;" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        }
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
 
         // Recursively display replies
-        displayComments($db, $comment['id'], $level + 1, $user_name);
+        displayComments($db, $comment['id'], $level + 1, $user_name, $maxLevel);
 
         echo '</div>';
     }
@@ -949,7 +959,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
-                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
                         echo '<div style="display: flex; align-items: center;">';
 
                         // Display the user's image if it's available
@@ -1167,27 +1177,30 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
         <?php
 
 // Function to display comments and their replies
-function displayComments($db, $parentId = 0, $level = 0, $user_name) {
+function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel = 7) {
     $comments = mysqli_query($db, "SELECT * FROM tbl_forum WHERE parent_id = $parentId ORDER BY id DESC");
 
     while ($comment = mysqli_fetch_assoc($comments)) {
         echo '<div style="margin-left: ' . ($level * 20) . 'px;">';
-        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 10px;">';
+        echo '<div class="comment-text" style="border: 1px solid black; padding-left: 15px; border-radius: 5px;">';
         echo "<p style='margin-top: 5px;'>Replied by: <b>" . $comment['user'] . "</b></p>";
         echo "<p style='color: black;'>" . $comment['message'] . "</p>";
         echo "<p>Date: " . $comment['date'] . "</p>";
 
-        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        // Display the reply button only for comments up to level 9
+        if ($level <= $maxLevel) {
+            echo '<button type="button" class="btn btn-info" style="margin-right: 20px;" data-toggle="modal" data-target="#replyModal" onclick="setReplyId(' . $comment['id'] . ')">Reply</button>';
+        }
 
         // Add the delete button for the comment
         if ($comment['user'] == $user_name) {
-            echo '<button type="button" class="btn btn-danger" style="margin-left: 20px;" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
+            echo '<button type="button" class="btn btn-danger" onclick="confirmDelete(' . $comment['id'] . ')">Delete</button>';
         }
 
         echo '</div>';
 
         // Recursively display replies
-        displayComments($db, $comment['id'], $level + 1, $user_name);
+        displayComments($db, $comment['id'], $level + 1, $user_name, $maxLevel);
 
         echo '</div>';
     }
@@ -1216,7 +1229,7 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name) {
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
-                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 10px;">';
+                echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
                         echo '<div style="display: flex; align-items: center;">';
 
                         // Display the user's image if it's available
