@@ -2,7 +2,6 @@
 include '../../includes/conn.php';
 include '../../includes/session.php';
 include '../../includes/head.php';
-include '../../includes/script.php';
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +62,24 @@ include '../../includes/script.php';
         .date-published {
             color: #888;
         }
+
+        .delete-button {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .delete-button:hover {
+            background-color: #99232E;
+        }
     </style>
 </head>
+
+<body class="g-sidenav-show  bg-gray-200">
 
 <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Student" || $_SESSION['role'] == "Alum Stud") {?>
 
@@ -73,8 +88,6 @@ include '../../includes/script.php';
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
 
 <?php include "../../includes/navbar.php"?>
-
-<body>
 
 <?php
 
@@ -87,7 +100,7 @@ if (isset($_GET['id'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        echo '<div class="container mt-6" style="background-color: white;">';
+        echo '<div class="container mt-6" style="background-color: white; padding-bottom: 20px;">';
         echo '<h2>' . $row['title'] . '</h2>';
         
         if (!empty($row['image_filename'])) {
@@ -96,7 +109,14 @@ if (isset($_GET['id'])) {
 
         echo '<p style="text-indent: 25px; text-align: justify;">' . $row['content'] . '</p>';
         echo '<p class="date-published" style="font-size: 17px; margin-left: 20px;">Date Published: ' . $row['date_published'] . '</p>';
-        echo '<a class="back-button" style="margin-bottom: 15px;" href="news-display.php">Back to News</a><br><br>';
+        echo '<a class="back-button" style="margin-bottom: 15px;" href="news-display.php">Back to News</a>';
+
+        if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin"){
+            echo '<form method="post" action="delete-news.php" style="margin-top: 10px; margin-left: 10px;" onsubmit="return confirmDelete();">';
+            echo '<input type="hidden" name="news_id" value="' . $row['id'] . '">';
+            echo '<button type="submit" class="delete-button">Delete</button>';
+            echo '</form>'; }
+
         echo '</div>';
     } else {
         echo '<p>No news article found.</p>';
@@ -113,5 +133,8 @@ if (isset($_GET['id'])) {
 <?php } ?>
 
 </main>
+
+<?php include '../../includes/script.php'?>
+
 </body>
 </html>

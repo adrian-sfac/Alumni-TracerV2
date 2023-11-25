@@ -2,7 +2,6 @@
 require '../../includes/conn.php';
 include '../../includes/session.php';
 include '../../includes/head.php';
-include '../../includes/script.php';
 
 $totalEntriesQuery = $db->query("SELECT COUNT(*) as total FROM tbl_job");
 $totalEntries = $totalEntriesQuery->fetch_assoc()['total'];
@@ -112,7 +111,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
     </style>
 </head>
-<body>
+<body class="g-sidenav-show  bg-gray-200">
 
 <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Student" || $_SESSION['role'] == "Alum Stud") {?>
 
@@ -239,6 +238,8 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 <?php }?>
 
 </main>
+
+<?php include '../../includes/script.php'?>
 
 </body>
 </html>

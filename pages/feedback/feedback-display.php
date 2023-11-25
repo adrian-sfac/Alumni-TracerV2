@@ -2,7 +2,6 @@
 require '../../includes/conn.php';
 include '../../includes/session.php';
 include '../../includes/head.php';
-include "../../includes/script.php";
 
 $totalEntriesQuery = $db->query("SELECT COUNT(*) as total FROM tbl_feedback");
 $totalEntries = $totalEntriesQuery->fetch_assoc()['total'];
@@ -55,17 +54,17 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
     </style>
 </head>
-<body>
+<body class="g-sidenav-show  bg-gray-200">
 
 <?php if ($_SESSION['role'] == "Super Administrator") {?>
-
+<!-- Sidebar -->
 <?php include "../../includes/sidebar.php";?>
-
+<!-- End Sidebar -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
-
+<!-- Navbar -->
 <?php include "../../includes/navbar.php"?>
-
-<div class="container">
+<!-- End Navbar -->
+<div class="container-fluid py-4">
     <div class="row">
         <div class="col-md-12">
             <div class="feedback-list">
@@ -181,6 +180,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 <?php }?>
 
 </main>
+<?php include "../../includes/script.php"; ?>
 
 </body>
 </html>

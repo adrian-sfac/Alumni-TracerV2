@@ -13,7 +13,9 @@ include '../../includes/head.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback Form</title>
 </head>
-<body>
+
+<body class="g-sidenav-show  bg-gray-200">
+    
 <?php
 include "../../includes/sidebar.php";
 ?>

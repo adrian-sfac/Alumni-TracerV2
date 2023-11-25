@@ -2,8 +2,6 @@
 include '../../includes/conn.php';
 include '../../includes/session.php';
 include '../../includes/head.php';
-include '../../includes/script.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +93,8 @@ include '../../includes/script.php';
     </style>
 </head>
 
+<body class="g-sidenav-show  bg-gray-200">
+
 <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Student" || $_SESSION['role'] == "Alum Stud") {?>
 
 <?php include "../../includes/sidebar.php";?>
@@ -102,8 +102,6 @@ include '../../includes/script.php';
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
 
 <?php include "../../includes/navbar.php"?>
-
-<body>
 
 <?php
 $newsPerPage = 3;
@@ -174,6 +172,9 @@ echo '</div>';
 </script>
 
 </body>
+
+<?php include "../../includes/script.php"; ?>
+
 </html>
 
 

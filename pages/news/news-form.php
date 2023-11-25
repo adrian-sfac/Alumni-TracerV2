@@ -5,7 +5,6 @@
 require '../../includes/conn.php';
 include '../../includes/head.php';
 include '../../includes/session.php';
-include "../../includes/script.php";
 ?>
 
 <head>
@@ -67,7 +66,7 @@ include "../../includes/script.php";
 
 <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin") {?>
 
-<body>
+<body class="g-sidenav-show  bg-gray-200">
 
 <?php include "../../includes/sidebar.php";?>
 
@@ -118,6 +117,8 @@ include "../../includes/script.php";
 </script>
 
 </main>
+
+<?php include "../../includes/script.php"; ?>
 
 </body>
 </html>
