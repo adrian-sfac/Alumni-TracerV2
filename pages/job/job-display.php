@@ -71,8 +71,8 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
         .modal {
             display: none;
             position: fixed;
-            top: 70%;
-            left: 55%;
+            top: 50%;
+            left: 53%;
             transform: translate(-50%, -50%);
             border: 1px transparent;
             background-color: transparent;
