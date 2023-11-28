@@ -136,7 +136,32 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                     LEFT JOIN tbl_registrar re ON f.user = re.username
                     LEFT JOIN tbl_student st ON f.user = st.username
                     LEFT JOIN tbl_alumni al ON f.user = al.username
-                    WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage");
+                    WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage"); 
+
+        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
+        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
+
+        $totalPages = ceil($totalComments / $commentsPerPage);
+
+        // Display pagination links
+        echo '<ul class="pagination justify-content-center">';
+                
+        // Left arrow for previous page
+        if ($current_page > 1) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous"><span aria-hidden="true">&larr;</span></a></li>';
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $current_page) ? 'active' : '';
+            echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+
+        // Right arrow for next page
+        if ($current_page < $totalPages) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next"><span aria-hidden="true">&rarr;</span></a></li>';
+        }
+
+        echo '</ul>';
 
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
@@ -170,11 +195,6 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         echo '</div>';
             }
         }
-
-        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
-        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
-
-        $totalPages = ceil($totalComments / $commentsPerPage);
 
         // Display pagination links
         echo '<ul class="pagination justify-content-center">';
@@ -412,6 +432,31 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                     LEFT JOIN tbl_alumni al ON f.user = al.username
                     WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage");
 
+        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
+        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
+
+        $totalPages = ceil($totalComments / $commentsPerPage);
+
+        // Display pagination links
+        echo '<ul class="pagination justify-content-center">';
+                
+        // Left arrow for previous page
+        if ($current_page > 1) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous"><span aria-hidden="true">&larr;</span></a></li>';
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $current_page) ? 'active' : '';
+            echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+
+        // Right arrow for next page
+        if ($current_page < $totalPages) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next"><span aria-hidden="true">&rarr;</span></a></li>';
+        }
+
+        echo '</ul>';
+
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
                 echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
@@ -444,11 +489,6 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         echo '</div>';
             }
         }
-
-        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
-        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
-
-        $totalPages = ceil($totalComments / $commentsPerPage);
 
         // Display pagination links
         echo '<ul class="pagination justify-content-center">';
@@ -686,6 +726,31 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                     LEFT JOIN tbl_alumni al ON f.user = al.username
                     WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage");
 
+        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
+        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
+
+        $totalPages = ceil($totalComments / $commentsPerPage);
+
+        // Display pagination links
+        echo '<ul class="pagination justify-content-center">';
+                
+        // Left arrow for previous page
+        if ($current_page > 1) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous"><span aria-hidden="true">&larr;</span></a></li>';
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $current_page) ? 'active' : '';
+            echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+
+        // Right arrow for next page
+        if ($current_page < $totalPages) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next"><span aria-hidden="true">&rarr;</span></a></li>';
+        }
+
+        echo '</ul>';
+
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
                 echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
@@ -716,11 +781,6 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         echo '</div>';
             }
         }
-
-        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
-        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
-
-        $totalPages = ceil($totalComments / $commentsPerPage);
 
         // Display pagination links
         echo '<ul class="pagination justify-content-center">';
@@ -957,6 +1017,31 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                     LEFT JOIN tbl_alumni al ON f.user = al.username
                     WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage");
 
+        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
+        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
+
+        $totalPages = ceil($totalComments / $commentsPerPage);
+
+        // Display pagination links
+        echo '<ul class="pagination justify-content-center">';
+                
+        // Left arrow for previous page
+        if ($current_page > 1) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous"><span aria-hidden="true">&larr;</span></a></li>';
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $current_page) ? 'active' : '';
+            echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+
+        // Right arrow for next page
+        if ($current_page < $totalPages) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next"><span aria-hidden="true">&rarr;</span></a></li>';
+        }
+
+        echo '</ul>';
+
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
                 echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
@@ -987,11 +1072,6 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         echo '</div>';
             }
         }
-
-        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
-        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
-
-        $totalPages = ceil($totalComments / $commentsPerPage);
 
         // Display pagination links
         echo '<ul class="pagination justify-content-center">';
@@ -1227,6 +1307,31 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                     LEFT JOIN tbl_alumni al ON f.user = al.username
                     WHERE f.parent_id = 0 ORDER BY f.id DESC LIMIT $offset, $commentsPerPage");
 
+        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
+        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
+
+        $totalPages = ceil($totalComments / $commentsPerPage);
+
+        // Display pagination links
+        echo '<ul class="pagination justify-content-center">';
+                
+        // Left arrow for previous page
+        if ($current_page > 1) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous"><span aria-hidden="true">&larr;</span></a></li>';
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $current_page) ? 'active' : '';
+            echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+
+        // Right arrow for next page
+        if ($current_page < $totalPages) {
+            echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next"><span aria-hidden="true">&rarr;</span></a></li>';
+        }
+
+        echo '</ul>';
+
         if (mysqli_num_rows($display) != 0) {
             while ($row = mysqli_fetch_assoc($display)) {
                 echo '<div class="comment" data-user="' . $row['user'] . '" style="border: 1px solid black; padding: 10px; margin: 10px; margin-bottom: 20px; border-radius: 5px;">';
@@ -1257,11 +1362,6 @@ function displayComments($db, $parentId = 0, $level = 0, $user_name, $maxLevel =
                         echo '</div>';
             }
         }
-
-        $totalCommentsResult = mysqli_query($db, "SELECT COUNT(*) AS total FROM tbl_forum WHERE parent_id = 0");
-        $totalComments = mysqli_fetch_assoc($totalCommentsResult)['total'];
-
-        $totalPages = ceil($totalComments / $commentsPerPage);
 
         // Display pagination links
         echo '<ul class="pagination justify-content-center">';
