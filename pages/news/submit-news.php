@@ -1,6 +1,6 @@
 <?php
-
 include '../../includes/conn.php';
+include '../../includes/session.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];
@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $title, $content, $image_filename);
     
     if ($stmt->execute()) {
-        echo "<script language=javascript>alert('News posted successfully!')</script>";
-        echo "<script> document.location='news-display.php' </script>";
+        $_SESSION['news_added'] = 'News Posted Successfully!';
+        header("location: news-form.php");
     } else {
-        echo "<script language=javascript>alert('News posting unsuccessful.')</script>";
+        echo "<script language=javascript>alert('News post unsuccessful.')</script>";
         echo "<script> document.location='news-display.php' </script>";
     }
 

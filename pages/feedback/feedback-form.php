@@ -12,6 +12,39 @@ include '../../includes/head.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback Form</title>
+  <style>
+        .modal-dialog {
+            margin: 15% auto;
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-header, .modal-body, .modal-footer {
+            padding: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Sans-serif';
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn-dark, .btn-info {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-dark:hover {
+            background-color: #555;
+        }
+
+        .btn-info:hover {
+            background-color: #007bff;
+        }
+  </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -30,7 +63,7 @@ include "../../includes/sidebar.php";
                 <div class="card">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4" style="font-family: sans-serif;">Feedback Form</h3>
-                        <form method="post" action="" id="feedbackForm" onsubmit="return confirm('Are you sure you want to submit the feedback?');">
+                        <form method="post" action="submit-feedback.php" id="feedbackForm">
                             <a href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
                                 <?php 
                                 $getImg = mysqli_query($db, "SELECT img FROM tbl_alumni WHERE alumni_id = '$alumni_id'");
@@ -69,44 +102,66 @@ include "../../includes/sidebar.php";
                             </div>
 
                             <div class="mt-3 text-center">
-                                <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                                <button type="submit" class="btn btn-dark mt-3" onclick="showConfirmDialog(event)">Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <?php 
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        $user_name = $db->real_escape_string($_POST['user']);
-        $email = $db->real_escape_string($_POST['email']);
-        $feedback = $db->real_escape_string($_POST['feedback']);
-        $rating = (int)$_POST['rating'];
-        $anonymous = isset($_POST['anonymous']) ? 1 : 0;
-
-        $insertQuery = "INSERT INTO tbl_feedback (user, email, feedback, rating, anonymous) VALUES ('$user_name', '$email', '$feedback', $rating, $anonymous)";
-        $result = $db->query($insertQuery);
-
-        if ($result) {
-            // Successful insertion
-            echo "<script> alert('Feedback submitted successfully!') </script>";
-            echo "<script>document.location='feedback-form.php'</script>";
-        } else {
-            // Error in insertion
-            echo "<script> alert('Error! Feedback unsuccessful.') </script>" . $db->error;
-            echo "<script>document.location='feedback-form.php'</script>";
-        }
-    }
-    ?>    
+    </div>    
 
     <?php include "../../includes/footer.php"?>
 <?php } ?>
+
+<script>
+    function showConfirmDialog(event) {
+        event.preventDefault();
+        $('#confirmModal').modal('show');
+    }
+
+    function closeConfirmDialog() {
+        $('#confirmModal').modal('hide');
+    }
+
+    function submitForm() {
+        $('#feedbackForm').submit();
+    }
+</script>
+
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to submit this feedback?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick="closeConfirmDialog()">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="submitForm()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
+
+<?php include "../../includes/script.php"?>
+
+<script>
+<?php
+  if (!empty($_SESSION['feedback_added'])) { ?>
+  Swal.fire("Feedback","Submitted Successfully ", "success");
+  <?php
+  unset($_SESSION['feedback_added']);
+  }?>
+</script>
+
 </body>
 </html>
 
 
 
-<?php include "../../includes/script.php"?>

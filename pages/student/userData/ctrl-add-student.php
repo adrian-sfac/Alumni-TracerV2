@@ -24,5 +24,5 @@ if (isset($_POST['submit'])) {
   }
 } else {
   $_SESSION['usernameExist'] = true;
-  header("location: ../form.php");
+  header("location: ../add-student.php");
 }

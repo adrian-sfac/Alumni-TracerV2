@@ -61,6 +61,38 @@ include '../../includes/session.php';
         button:hover {
             background-color: #0056b3;
         }
+
+        .modal-dialog {
+            margin: 15% auto;
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-header, .modal-body, .modal-footer {
+            padding: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Sans-serif';
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn-dark, .btn-info {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-dark:hover {
+            background-color: #555;
+        }
+
+        .btn-info:hover {
+            background-color: #007bff;
+        }
     </style>
 </head>
 
@@ -79,7 +111,7 @@ include '../../includes/session.php';
                 <div class="card">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4" style="font-family: sans-serif;">Add News</h3>
-                        <form method="post" action="submit-news.php" enctype="multipart/form-data" onsubmit="return confirmSubmit();">
+                        <form id="newsForm" method="post" action="submit-news.php" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="title">News Title:</label>
                             <input type="text" style="border: 1px solid black; border-radius: 3px; color: black;" name="title" required>
@@ -97,7 +129,7 @@ include '../../includes/session.php';
                         </div>
 
                         <div class="text-center">
-                            <button type="submit">Submit News</button>
+                            <button type="button" onclick="showConfirmDialog()">Submit News</button>
                         </div>
                         </form>
                     </div>
@@ -111,14 +143,46 @@ include '../../includes/session.php';
 <?php } ?>
 
 <script>
-    function confirmSubmit() {
-        return confirm("Are you sure you want to submit this news article?");
+    function showConfirmDialog() {
+        $('#confirmModal').modal('show');
+    }
+    function closeConfirmDialog() {
+        $('#confirmModal').modal('hide');
+    }
+    function submitForm() {
+        $('#newsForm').submit();
     }
 </script>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to post this news article?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick="closeConfirmDialog()">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="submitForm()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </main>
 
 <?php include "../../includes/script.php"; ?>
+
+<script>
+<?php
+  if (!empty($_SESSION['news_added'])) { ?>
+  Swal.fire("News","Posted Successfully ", "success");
+  <?php
+  unset($_SESSION['news_added']);
+  }?>
+</script>
 
 </body>
 </html>

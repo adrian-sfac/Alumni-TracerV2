@@ -70,6 +70,38 @@ include '../../includes/head.php';
             padding: 10px 20px;
             cursor: pointer;
         }
+
+        .modal-dialog {
+            margin: 15% auto;
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-header, .modal-body, .modal-footer {
+            padding: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Sans-serif';
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn-dark, .btn-info {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-dark:hover {
+            background-color: #555;
+        }
+
+        .btn-info:hover {
+            background-color: #007bff;
+        }
     </style>
 </head>
 <body class="g-sidenav-show  bg-gray-200">
@@ -85,7 +117,7 @@ include '../../includes/head.php';
                 <div class="card">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4" style="font-family: sans-serif;">Job Opportunity Form</h3>
-                        <form method="post" action="submit-job.php" id="jobForm">
+                        <form method="post" id="jobForm" action="submit-job.php" id="jobForm">
                             <div class="mb-3">
                                 <label for="name" class="form-label" style="color: black;">Name:</label>
                                 <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="name" placeholder="Full name of the person who offers the job e.g. Juan" required>
@@ -103,7 +135,7 @@ include '../../includes/head.php';
 
                             <div class="mb-3">
                                 <label for="job_name" class="form-label" style="color: black;">Job Title:</label>
-                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="job_name" placeholder="Name of the Job" required>
+                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="job_name" placeholder="ex. Teacher, Doctor etc." required>
                             </div>
 
                             <div class="mb-3">
@@ -132,7 +164,7 @@ include '../../includes/head.php';
 
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                                <button type="submit" class="btn btn-dark mt-3" onclick="showConfirmDialog(event)">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -143,9 +175,51 @@ include '../../includes/head.php';
 
 <?php include "../../includes/footer.php"; ?>
 
+<script>
+    function showConfirmDialog(event) {
+        event.preventDefault();
+        $('#confirmModal').modal('show');
+    }
+
+    function closeConfirmDialog() {
+        $('#confirmModal').modal('hide');
+    }
+
+    function submitForm() {
+        $('#jobForm').submit();
+    }
+</script>
+
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to post this job?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick="closeConfirmDialog()">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="submitForm()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
 
 <?php include "../../includes/script.php"; ?>
+
+<script>
+<?php
+  if (!empty($_SESSION['job_added'])) { ?>
+  Swal.fire("Job","Posted Successfully ", "success");
+  <?php
+  unset($_SESSION['job_added']);
+  }?>
+</script>
 
 </body>
 </html>

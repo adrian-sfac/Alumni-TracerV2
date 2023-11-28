@@ -60,7 +60,7 @@ include '../../includes/head.php';
       <div class="main active">
         <img class="resize" src="../../assets/img/sfac.png">
         <div class="text">
-          <h2>Add Registrar</h2>
+          <h2>Add Student</h2>
           <p>Enter your personal information to proceed.</p>
         </div>
         <div class="input-text">
