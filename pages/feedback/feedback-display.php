@@ -64,7 +64,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 <!-- Navbar -->
 <?php include "../../includes/navbar.php"?>
 <!-- End Navbar -->
-<div class="container-fluid py-4">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="feedback-list">

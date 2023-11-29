@@ -13,7 +13,7 @@ include '../../includes/head.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback Form</title>
   <style>
-        .modal-dialog {
+        #confirmModal .modal-dialog{
             margin: 15% auto;
         }
 

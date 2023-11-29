@@ -71,7 +71,7 @@ include '../../includes/head.php';
             cursor: pointer;
         }
 
-        .modal-dialog {
+        #confirmModal .modal-dialog {
             margin: 15% auto;
         }
 

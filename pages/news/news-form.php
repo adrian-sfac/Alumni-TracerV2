@@ -62,7 +62,7 @@ include '../../includes/session.php';
             background-color: #0056b3;
         }
 
-        .modal-dialog {
+        #confirmModal .modal-dialog {
             margin: 15% auto;
         }
 
