@@ -33,17 +33,16 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white " href="../login/userData/ctrl.logout.php">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link text-white " href="">
                   <span class="fa fa-user me-sm-1"> </span>
                   <span class="sidenav-normal  ms-3  ps-1 "> Logout </span>
                 </a>
               </li>
-              
             </ul>
           </div>
         </li>
 
-        <hr class="horizontal light mt-3 mb-2">
+        <hr class="horizontal light mt-0 mb-2">
         <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -276,31 +275,7 @@
         </li>
 
       </ul>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
 
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="py-3 text-center">
-                <i class="fas fa-user-alt text-9xl"></i>
-                <p>Are you sure you want to Logout?</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
-                <button type="button" class="btn bg-gradient-danger">Logout</button>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
       <?php } else if ($_SESSION['role'] == "Admin") {
             ?>
       <ul class="navbar-nav">
@@ -335,7 +310,7 @@
           </div>
         </li>
         
-        <hr class="horizontal light mt-3 mb-2">
+        <hr class="horizontal light mt-0 mb-2">
         <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -555,32 +530,6 @@
         </li>
 
       </ul>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="py-3 text-center">
-                <i class="fas fa-user-alt text-9xl"></i>
-                <p>Are you sure you want to Logout?</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
-                <button type="button" class="btn bg-gradient-danger">Logout</button>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      
 
     <?php } else if ($_SESSION['role'] == "Registrar") {
             ?>
@@ -615,7 +564,7 @@
             </ul>
           </div>
         </li>
-      <hr class="horizontal light mt-3 mb-2">
+      <hr class="horizontal light mt-0 mb-2">
       <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -703,31 +652,6 @@
         </li>
 
       </ul>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="py-3 text-center">
-                <i class="fas fa-user-alt text-9xl"></i>
-                <p>Are you sure you want to Logout?</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
-                <button type="button" class="btn bg-gradient-danger">Logout</button>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
     
     <?php } else if ($_SESSION['role'] == "Student") {
             ?>
@@ -763,7 +687,7 @@
           </div>
         </li>
       
-      <hr class="horizontal light mt-3 mb-2">
+      <hr class="horizontal light mt-0 mb-2">
       <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -817,32 +741,6 @@
               </li>
       
               </ul>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="py-3 text-center">
-                <i class="fas fa-user-alt text-9xl"></i>
-                <p>Are you sure you want to Logout?</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
-                <button type="button" class="btn bg-gradient-danger">Logout</button>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    
 
     <?php } else if ($_SESSION['role'] == "Alum Stud") {
             ?>
@@ -876,7 +774,7 @@
             </ul>
           </div>
         </li>
-      <hr class="horizontal light mt-3 ">
+      <hr class="horizontal light mt-0 ">
 
       <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/dashboard/dashboard.php">
@@ -964,35 +862,6 @@ if ($num > 0) {
               </li>
 
               </ul>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="py-3 text-center">
-                <i class="fas fa-user-alt text-9xl"></i>
-                <p>Are you sure you want to Logout?</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
-                <button type="button" class="btn bg-gradient-danger">Logout</button>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    
-      
-
     <?php } ?>
   </div>
-
 </aside>
