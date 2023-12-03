@@ -53,7 +53,9 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+            <a class="nav-link text-body font-weight-bold px-0">
+            <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+            </a>
             <a href="../login/userData/ctrl.logout.php" class="nav-link text-body font-weight-bold px-0">
               <button type="button" class="btn bg-gradient-danger">Logout</button>
             </a>
