@@ -108,7 +108,7 @@ $newsPerPage = 3;
 $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($currentPage - 1) * $newsPerPage;
 
-$query = $db->query("SELECT * FROM tbl_news ORDER BY date_published DESC LIMIT $offset, $newsPerPage");
+$query = $db->query("SELECT id, title, image_filename, content, date_published, view_count FROM tbl_news ORDER BY date_published DESC LIMIT $offset, $newsPerPage");
 
 while ($row = $query->fetch_assoc()) {
     echo '<div class="container" style="background-color: white; color: black; border: transparent; padding: 10px; border-radius: 10px; margin-top: 10px; margin-bottom: 15px;">';
@@ -130,7 +130,8 @@ while ($row = $query->fetch_assoc()) {
         
     }
     echo '</p>';
-    echo '<a class="button" style="margin-top: 20px;" href="news-details.php?id=' . $row['id'] . '">Read more</a>';
+    // Inside your while loop
+    echo '<a class="button" style="margin-top: 20px;" href="news-details.php?id=' . $row['id'] . '" onclick="updateViewCount(' . $row['id'] . ')">Read more</a>';
 
     if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin"){
         echo '<form method="post" action="delete-news.php" style="margin-top: 10px;" onsubmit="return confirmDelete();">';
@@ -138,7 +139,7 @@ while ($row = $query->fetch_assoc()) {
         echo '<button type="submit" class="delete-button">Delete</button>';
         echo '</form>'; }
     
-    echo '<p style="margin-top: 20px;font-size: 17px;">Date Published: ' . $row['date_published'] . '</p>';
+    echo '<p id="viewCount_' . $row['id'] . '" style="margin-top: 20px;font-size: 17px;">Date Published: ' . $row['date_published'] . ' | Views: ' . $row['view_count'] . '</p>';
     echo '</div>';
 }
 

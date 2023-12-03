@@ -323,7 +323,7 @@ include '../../includes/graph-data.php';
                 scales: {
                     x: {
                         beginAtZero: true,
-                        max: <?php echo max($feedbackData); ?>,
+                        max: <?php echo max($feedbackData) + 1; ?>,
                         grid: {
                             display: false, 
                         },

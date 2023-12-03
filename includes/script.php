@@ -259,3 +259,24 @@ return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-succ
 
   </script>
   <!-- End Table of Alumni Form List -->
+
+  <!-- Update View Count on News -->
+<script>
+    function updateViewCount(newsId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'update-view-count.php?id=' + newsId, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Update the displayed view count
+            var viewCountElement = document.getElementById('viewCount_' + newsId);
+            if (viewCountElement) {
+                viewCountElement.textContent = parseInt(viewCountElement.textContent) + 1;
+            }
+        }
+    };
+
+    xhr.send();
+}
+</script>
+  <!-- End of Update View Count on News -->
