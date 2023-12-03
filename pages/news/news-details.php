@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
         }
 
         echo '<p style="text-indent: 25px; text-align: justify;">' . $row['content'] . '</p>';
-        echo '<p class="date-published" style="font-size: 17px; margin-left: 20px;">Date Published: ' . $row['date_published'] . '</p>';
+        echo '<p id="viewCount_' . $row['id'] . '" style="margin-top: 20px;font-size: 17px;">Date Published: ' . $row['date_published'] . ' | Views: ' . $row['view_count'] . '</p>';
         echo '<a class="back-button" style="margin-bottom: 15px;" href="news-display.php">Back to News</a>';
 
         if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin"){

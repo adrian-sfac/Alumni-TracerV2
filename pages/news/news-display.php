@@ -22,12 +22,11 @@ include '../../includes/head.php';
             font-size: 30px;
         }
 
-        p {
+        #newsText .p {
             color: #555;
             text-align: justify;
             margin-right: 10px;
             margin-bottom: 10px;
-            font-size: 19px;
         }
 
         .date-published {
@@ -90,6 +89,7 @@ include '../../includes/head.php';
         .delete-button:hover {
             background-color: #99232E;
         }
+
     </style>
 </head>
 
@@ -123,7 +123,7 @@ while ($row = $query->fetch_assoc()) {
     $words = explode(' ', $content);
     $limitedContent = implode(' ', array_slice($words, 0, $wordLimit));
 
-    echo '<p style="text-indent: 25px; margin-bottom: 15px;">' . $limitedContent;
+    echo '<p style="text-indent: 25px; margin-bottom: 15px; font-size: 19px;" text-align: justify;>' . $limitedContent;
     
     if (count($words) > $wordLimit) {
         echo ' ...<br>';

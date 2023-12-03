@@ -68,7 +68,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
             z-index: 1;
         }
 
-        .modal {
+        #jobInfoModal .modal {
             display: none;
             position: fixed;
             top: 50%;
@@ -85,7 +85,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
         .modal-content {
             color: black;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 10% auto;
             padding: 30px;
         }
 
