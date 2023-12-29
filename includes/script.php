@@ -191,7 +191,6 @@ include '../../includes/graph-data.php';
 </script>
 <!-- End of Analytics Insights ( Per Department ) -->
 
-
 <script src="https://cdn.datatables.net/plug-ins/1.13.1/api/fnReloadAjax.js"></script>
 <!-- Script Table of Alumni Form List -->
 
@@ -280,3 +279,150 @@ return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-succ
 }
 </script>
   <!-- End of Update View Count on News -->
+
+<!-- Satisfaction Graph -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $sql = "SELECT rating FROM tbl_feedback";
+        $result = $db->query($sql);
+
+        $feedbackData = [0, 0, 0, 0, 0];
+        $totalRatings = 0;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rating = $row['rating'];
+                $feedbackData[$rating - 1]++;
+                $totalRatings += $rating;
+            }
+        }
+
+        // Calculate the mean rating
+        $meanRating = $totalRatings / ($result->num_rows ?: 1);
+        ?>
+
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["5", "4", "3", "2", "1"],
+                datasets: [
+                    {
+                        label: "Feedback Ratings",
+                        data: <?php echo json_encode(array_reverse($feedbackData)); ?>,
+                        backgroundColor: '#FEE12B',
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                        borderWidth: 1,
+                        categoryPercentage: 0.7,
+                        barPercentage: 0.9, 
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: <?php echo max($feedbackData) + 1; ?>,
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 15, 
+                        },
+                    },
+                },
+                indexAxis: 'y',
+            },
+        });
+
+        var meanDisplay = document.getElementById('meanDisplay');
+        meanDisplay.textContent = 'Rating: ' + <?php echo $meanRating; ?>.toFixed(2);
+    });
+</script>
+<!-- End of Satisfaction Graph -->
+
+<!-- Job Alignment Analytics -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $sql = "SELECT align_id FROM tbl_form WHERE align_id IN (1, 2)";
+        $result = $db->query($sql);
+
+        $alignmentData = [0, 0];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $align = $row['align_id'];
+                $alignmentData[$align - 1]++;
+            }
+        }
+
+        // Calculate the percentage of align_id 1 over align_id 2 and round it to a whole number
+        $percentage = round(($alignmentData[0] / ($alignmentData[0] + $alignmentData[1])) * 100);
+        ?>
+
+        var ctx = document.getElementById("chart-bars2").getContext("2d");
+
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Aligned", "Not Aligned"],
+                datasets: [
+                    {
+                        label: "Job Alignment",
+                        data: <?php echo json_encode($alignmentData); ?>,
+                        backgroundColor: ['#3853ff', '#2a3ebf'], 
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                        borderWidth: 1,
+                        categoryPercentage: 0.7,
+                        barPercentage: 0.5, 
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: <?php echo max($alignmentData) + 1; ?>,
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: true,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false, 
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 15, 
+                        },
+                    },
+                },
+                indexAxis: 'x',
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+            },
+        });
+
+        var percentageDisplay = document.getElementById('percentageDisplay');
+        percentageDisplay.textContent = 'Percentage of Employed Graduates with Jobs Aligned with their Course: ' + <?php echo $percentage; ?> + '%';
+    });
+</script>
+<!-- End of Job Alignment Analytics -->
