@@ -19,7 +19,7 @@ $stmt = $db->prepare($sql);
 $stmt->bind_param("ssssssss", $user_name, $name, $email, $contact, $job_name, $job_desc, $edu_background, $date);
 
 if ($stmt->execute()) {
-    $_SESSION['job_added'] = 'Job Posted Successfully!';
+    $_SESSION['job_added'] = 'Job Submitted Successfully!';
     header("location: job-form.php");
 } else {
     echo "Error: " . $sql . "<br>" . $db->error;

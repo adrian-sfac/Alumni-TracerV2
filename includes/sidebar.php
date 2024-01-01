@@ -60,11 +60,27 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-request.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Pending Job Offers</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../feedback/feedback-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">comment</i>
+            </div>
+            <span class="nav-link-text ms-1">Feedbacks</span>
           </a>
         </li>
         
@@ -216,16 +232,6 @@
                     </i>
                   </div>
                   <span class="nav-link-text ms-2 ps-1">Alumni Form Lists</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../feedback/feedback-display.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons">
-                      toc
-                    </i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Feedback Lists</span>
                 </a>
               </li>
               <!-- <li class="nav-item ">

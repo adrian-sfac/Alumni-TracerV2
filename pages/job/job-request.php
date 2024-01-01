@@ -109,6 +109,10 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
             text-decoration: underline;
         }
 
+        #confirmModal .modal-dialog {
+            margin: 15% auto;
+        }
+
     </style>
 </head>
 <body class="g-sidenav-show  bg-gray-200">
@@ -125,29 +129,32 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
     <div class="row">
         <div class="col-md-12">
             <div class="job-list">
-                <h3 class="text-center mb-4" style="font-family: sans-serif;">Job Opportunities</h3>
+                <h3 class="text-center mb-4" style="font-family: sans-serif;">Pending Job Offers</h3>
                 <?php
 
                 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                 $offset = ($currentPage - 1) * $entriesPerPage;
 
-                $query = $db->query("SELECT * FROM tbl_job WHERE request_id = 1 ORDER BY id DESC LIMIT $offset, $entriesPerPage");
+                $query = $db->query("SELECT * FROM tbl_job WHERE request_id = 0 ORDER BY id DESC LIMIT $offset, $entriesPerPage");
 
                 if ($query->num_rows > 0) {
                     while ($row = $query->fetch_assoc()) {
                         echo '<div class="feedback" style="color: black; border: 1px solid black; padding: 10px; border-radius: 10px; margin-bottom: 15px;">';
-                        echo '<strong><span style="margin-right: 50px; margin-left: 5px;">' . $row['job_name'] . '</span></strong>';
+                        if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar"){
+                        echo '<button class="btn btn-success" style="display: inline-block; margin-top: 10px; margin-left: 10px; margin-right: 10px;" onclick="showConfirmDialog(' . $row['id'] . ')">Approve</button>';}
+                        echo '<strong><span style="margin-right: 30px; margin-left: 5px;">' . $row['job_name'] . '</span></strong>';
                         echo '<span style="margin-left: 50%; margin-right: 20px;">Offered by: <strong>' . $row['name'] . '</strong></span>';
 
                         // Limiting job description words
                         // $jobDescWords = explode(' ', $row['job_desc']);
                         // $limitedJobDesc = implode(' ', array_slice($jobDescWords, 0, 20)); // Adjust the number of words as needed
                         // echo '<strong>Job Description:</strong> ' . $limitedJobDesc . ' ...<br>';
+                        
                         echo '<a href="#" onclick="showJobInfo(' . $row['id'] . ')">See details</a>';
                         if ($row['user'] == $user_name) {
                             echo '<a style="margin-left: 10px;" href="#" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>';
                         } else if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar") {
-                            echo '<a style="margin-left: 10px;" href="#" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>'; }
+                            echo '<a style="margin-left: 10px;" href="#" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>';}
                         echo '</div>';
                         
                         echo '<div class="modal-overlay" id="modalOverlay"></div>
@@ -164,7 +171,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
                                 </div>';
                         }
                 } else {
-                    echo '<p class="text-center" style="font-size: 18px;">No job opportunities yet.</p>';
+                    echo '<p class="text-center">No job opportunities yet.</p>';
                 }
                 ?>
             </div>
@@ -222,11 +229,9 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
     };
 
     function deleteJob(jobId) {
-        // You can add an additional confirmation here if needed
         var confirmDelete = confirm('Are you sure you want to delete this job?');
 
         if (confirmDelete) {
-            // Perform the delete operation, for example, redirect to a delete script
             window.location.href = 'delete-job.php?id=' + jobId;
         }
     }
@@ -236,6 +241,51 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 <?php include "../../includes/footer.php"?>
 
 <?php }?>
+
+<script>
+    function showConfirmDialog(jobId) {
+        var modal = $('#confirmModal');
+        modal.find('.modal-title').text('');
+        modal.find('.modal-footer button.btn-info').attr('onclick', 'submitApproval(' + jobId + ')');
+        modal.modal('show');
+    }
+
+    function submitApproval(jobId) {
+    Swal.fire({
+        title: 'Job Approved!',
+        icon: 'success',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: true
+    });
+
+    setTimeout(function() {
+        window.location.href = 'approve-job.php?id=' + jobId;
+    }, 3000);
+    }
+
+
+    function closeConfirmDialog() {
+        $('#confirmModal').modal('hide');
+    }
+</script>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                Approve the job offer?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick="closeConfirmDialog()">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="submitApproval()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </main>
 

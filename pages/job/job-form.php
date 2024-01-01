@@ -198,7 +198,7 @@ include '../../includes/head.php';
                 <h5 class="modal-title" id="confirmModalLabel"></h5>
             </div>
             <div class="modal-body">
-                Are you sure you want to post this job?
+                Are you sure you want to submit this job offer?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" onclick="closeConfirmDialog()">Cancel</button>
@@ -215,7 +215,7 @@ include '../../includes/head.php';
 <script>
 <?php
   if (!empty($_SESSION['job_added'])) { ?>
-  Swal.fire("Job","Posted Successfully ", "success");
+  Swal.fire("Job","Submitted Successfully ", "success");
   <?php
   unset($_SESSION['job_added']);
   }?>
