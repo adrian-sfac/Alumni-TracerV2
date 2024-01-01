@@ -81,12 +81,15 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
                         echo '<div class="feedback" style="color: black; border: 1px solid black; padding: 10px; border-radius: 10px; margin-bottom: 15px;">';
                         if ($row['anonymous'] == 0) {
                             echo '<strong>Name:</strong> ' . $row['user'] . '<br>';
+                            echo '<strong>Email:</strong> ' . $row['email'] . '<br>';
                         } else {
                             echo '<strong>Name: </strong> ';
                             echo '<span style="color: gray;">(Anonymous) </span>';
                             echo '<strong></strong> ' . $row['user'] . '<br>';
+                            echo '<strong>Email: </strong> ';
+                            echo '<span style="color: gray;">(Anonymous) </span>';
+                            echo '<strong></strong> ' . $row['email'] . '<br>';
                         }
-                        echo '<strong>Email:</strong> ' . $row['email'] . '<br>';
                         echo '<strong>Rating:</strong> ' . $row['rating'] . '<br>';
                         echo '<strong>Feedback:</strong> ' . $row['feedback'] . '<br>';
                         echo '</div>';
@@ -142,10 +145,11 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
                         echo '<div class="feedback" style="color: black; border: 1px solid black; padding: 10px; border-radius: 10px; margin-bottom: 15px;">';
                         if ($row['anonymous'] == 0) {
                             echo '<strong>Name:</strong> ' . $row['user'] . '<br>';
+                            echo '<strong>Email:</strong> ' . $row['email'] . '<br>';
                         } else {
                             echo '<strong>Name:</strong> Anonymous <br>';
+                            echo '<strong>Email:</strong> Anonymous <br>';
                         }
-                        echo '<strong>Email:</strong> ' . $row['email'] . '<br>';
                         echo '<strong>Rating:</strong> ' . $row['rating'] . '<br>';
                         echo '<strong>Feedback:</strong> ' . $row['feedback'] . '<br>';
                         echo '</div>';

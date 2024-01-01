@@ -120,12 +120,12 @@ include '../../includes/head.php';
                         <form method="post" id="jobForm" action="submit-job.php" id="jobForm">
                             <div class="mb-3">
                                 <label for="name" class="form-label" style="color: black;">Name:</label>
-                                <input type="text" class="form-control" style="border: 1px solid black; border-radius: 10px; color: black;" name="name" placeholder="Full name of the person who offers the job e.g. Juan" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="email" class="form-label" style="color: black;">Email:</label>
-                                <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required>
+                                <label class="text-bold ms-1 ps-1" style="color: black;"><?= $user_name ?></label>
+                                <input type="hidden" name="name" value="<?= $user_name ?>">
+                        
+                                <label for="email" class="form-label" style="color: black; margin-left: 50%;">Email:</label>
+                                <label class="text-bold ms-1 ps-1" style="color: black;"><?= $email ?></label>
+                                <input type="hidden" name="email" value="<?= $email ?>">
                             </div>
 
                             <div class="mb-3">

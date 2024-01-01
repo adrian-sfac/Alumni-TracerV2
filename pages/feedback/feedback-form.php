@@ -79,7 +79,8 @@ include "../../includes/sidebar.php";
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
-                                <input type="email" class="form-control" style="border: 1px solid black; border-radius: 10px; padding: 10px;" name="email" placeholder="example@gmail.com" required>
+                                <label class="text-bold ms-1 ps-1"><?= $email ?></label>
+                                <input type="hidden" name="email" value="<?= $email ?>">
                             </div>
 
                             <label for="rating">Rate your overall experience of the institution (5 as the highest, 1 as the lowest): </label>
