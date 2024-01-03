@@ -21,42 +21,52 @@ include '../../includes/head.php';
     <?php include "../../includes/navbar.php"?>
     <!-- End Navbar -->
 
-    <div class="container-fluid py-4" style="padding: 20px;">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card px-4 pb-4">
-                    <div class="text-start pt-4">
-                        <p class="text-lg mb-0 text-capitalize text-bold text-dark">Donation Details</p>
+    <!-- <div class="container-fluid py-4" style="padding: 20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card px-4 pb-4">
+                <div class="text-start pt-4">
+                    <p class="text-lg mb-0 text-capitalize text-bold text-dark">Institution Details</p>
+                </div>
+                <div class="row mt-0">
+                    <div class="col-md-6 text-center">
+                        <h3 style="margin: 0 0 10px 25px;">Institution</h3>
+                        <p style="text-align: justify; margin: 0 0 0 50px; color: black; font-size: 18px;">
+                            Eastwest Bank Deposit/Mobile Transfer <br>
+                            Bank Account: Eastwest Bank Deposit <br>
+                            Account Name: Saint Francis of Assisi College of Cavite <br>
+                            Account Number: 2000-0271-4719 <br>
+                            Branch: Molino Boulevard <br> <br>
+                            
+                            Gcash Online Fund Transfer <br>
+                            Bank: EastWest Bank <br>
+                            Account Name: SFAC Bacoor Campus <br>
+                            Account Number: 2000-0271-4719
+                        </p>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 style="margin: 0 0 10px 25px;">Alumni Association</h3>
-                            <p style="text-align: justify; margin: 0 0 0 50px; color: black; font-size: 18px;">
-                                Eastwest Bank Deposit/Mobile Transfer <br>
-                                Bank Account: Eastwest Bank Deposit <br>
-                                Account Name: Saint Francis of Assisi College of Cavite <br>
-                                Account Number: 2000-0271-4719 <br>
-                                Branch: Molino Boulevard <br> <br>
-                                
-                                Gcash Online Fund Transfer <br>
-                                Bank: EastWest Bank <br>
-                                Account Name: SFAC Bacoor Campus <br>
-                                Account Number: 2000-0271-4719 <br><br>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 style="margin: 0 0 10px 25px;">Institution</h3>
-                            <p style="text-align: justify; margin: 0 0 0 50px; color: black; font-size: 18px;">
-                                Eastwest Bank Deposit/Mobile Transfer <br>
-                                Bank Account: Eastwest Bank Deposit <br>
-                                Account Name: Saint Francis of Assisi College of Cavite <br>
-                                Account Number: 2000-0271-4719 <br>
-                                Branch: Molino Boulevard <br> <br>
-                                
-                                Gcash Online Fund Transfer <br>
-                                Bank: EastWest Bank <br>
-                                Account Name: SFAC Bacoor Campus <br>
-                                Account Number: 2000-0271-4719
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container-fluid py-2">
+        <div class="row mt-1 justify-content-center">
+            <div class="col-md-6">
+                <div class="card px-3 pb-3">
+                    <div class="col-md-12">
+                            <h3 class="text-center mt-3 mb-2">Institution</h3>
+                            <p style="text-align: justify; margin: 10px 30px; color: black; font-size: 20px; line-height: 1.6;">
+                            Eastwest Bank Deposit/Mobile Transfer <br>
+                            Bank Account: Eastwest Bank Deposit <br>
+                            Account Name: Saint Francis of Assisi College of Cavite <br>
+                            Account Number: 2000-0271-4719 <br>
+                            Branch: Molino Boulevard <br> <br>
+                            
+                            Gcash Online Fund Transfer <br>
+                            Bank: EastWest Bank <br>
+                            Account Name: SFAC Bacoor Campus <br>
+                            Account Number: 2000-0271-4719
                             </p>
                         </div>
                     </div>
@@ -65,7 +75,7 @@ include '../../includes/head.php';
         </div>
     </div>
 
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-2">
         <div class="row mt-1 justify-content-center">
             <div class="col-md-6">
                 <div class="card px-3 pb-3">

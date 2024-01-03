@@ -33,7 +33,8 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
         .feedback {
             margin-bottom: 20px;
-        }
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        } 
 
         .pagination {
             justify-content: center;
@@ -78,7 +79,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
             background-color: transparent;
             padding: 20px;
             border-radius: 10px;
-            z-index: 3; /* Higher z-index to appear above the overlay */
+            z-index: 3;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -121,9 +122,9 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
 <?php include "../../includes/navbar.php"?>
 
-<div class="container">
+<div class="container" style="margin-right: 5%;">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="job-list">
                 <h3 class="text-center mb-4" style="font-family: sans-serif;">Job Opportunities</h3>
                 <?php
@@ -133,39 +134,49 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
                 $query = $db->query("SELECT * FROM tbl_job WHERE request_id = 1 ORDER BY id DESC LIMIT $offset, $entriesPerPage");
 
+
                 if ($query->num_rows > 0) {
                     while ($row = $query->fetch_assoc()) {
                         echo '<div class="feedback" style="color: black; border: 1px solid black; padding: 10px; border-radius: 10px; margin-bottom: 15px;">';
-                        echo '<strong><span style="margin-right: 50px; margin-left: 5px;">' . $row['job_name'] . '</span></strong>';
-                        echo '<span style="margin-left: 50%; margin-right: 20px;">Offered by: <strong>' . $row['name'] . '</strong></span>';
-
-                        // Limiting job description words
-                        // $jobDescWords = explode(' ', $row['job_desc']);
-                        // $limitedJobDesc = implode(' ', array_slice($jobDescWords, 0, 20)); // Adjust the number of words as needed
-                        // echo '<strong>Job Description:</strong> ' . $limitedJobDesc . ' ...<br>';
-                        echo '<a href="#" onclick="showJobInfo(' . $row['id'] . ')">See details</a>';
-                        if ($row['user'] == $user_name) {
-                            echo '<a style="margin-left: 10px;" href="#" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>';
-                        } else if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar") {
-                            echo '<a style="margin-left: 10px;" href="#" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>'; }
+                        
+                        echo '<div class="row">';
+                        echo '<div class="col-md-6"><strong><span style="margin-right: 10px;">' . $row['job_name'] . '</span></strong>';
+                        echo '<span style="color: #888;"><i class="bi bi-eye"></i>' . $row['view_count'] . '</span></div>';
+                        echo '</div>';
+                        
+                        echo '<div class="row mt-2">';
+                        echo '<div class="col-md-6">Offered by: <strong>' . $row['name'] . '</strong></div>';
+                        echo '<div class="col-md-6 text-md-end">';
+                        echo '<a href="#" onclick="showJobInfo(' . $row['id'] . ', ' . $row['view_count'] . ')">See details</a>';
+                        
+                        if ($row['user'] == $user_name || $_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar") {
+                            echo '<a href="#" style="margin-left: 10px;" onclick="deleteJob(' . $row['id'] . ')"><i class="fas fa-trash-alt"></i></a>';
+                        }
+                        
+                        echo '</div>';
                         echo '</div>';
                         
                         echo '<div class="modal-overlay" id="modalOverlay"></div>
-                                <div id="jobInfoModal' . $row['id'] . '" class="modal" style="display: none;">
-                                    <div class="modal-content">
-                                        <span class="close" style="margin-right: 10px;" onclick="closeJobInfo(' . $row['id'] . ')">&times;</span>
-                                        <strong span style="font-size: 22px;">' . $row['job_name'] . '</span></strong>
-                                        <a style="font-size: 18px;">(Posted on: ' . $row['date'] . ')</a><br>
-                                        <span style="font-size: 18px; margin-left: 15px;"> <strong>Job Description:</strong> <br>' . $row['job_desc'] . '</span><br><br>
-                                        <span style="font-size: 18px;">Offered by: <strong>' . $row['name'] . '</strong></span>
-                                        <span style="font-size: 18px; margin-left: 40px; margin-top: 10px;">Email: '. $row['email'] .'</span>
-                                        <span style="font-size: 18px; margin-left: 40px;">Contact: '. $row['contact'] .'<br></span>
-                                    </div>
-                                </div>';
-                        }
+                        <div id="jobInfoModal' . $row['id'] . '" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" style="margin-right: 10px;" onclick="closeJobInfo(' . $row['id'] . ')">&times;</span>
+                                <strong span style="font-size: 22px;">' . $row['job_name'] . '</span></strong>
+                                <span style="color: #888;"><i class="bi bi-eye-fill"></i>' . $row['view_count'] . '</span>
+                                <a style="font-size: 18px;">(Posted on: ' . $row['date'] . ')</a><br>
+                                <span style="font-size: 18px; margin-left: 15px;"> <strong>Job Description:</strong> <br>' . $row['job_desc'] . '</span><br><br>
+                                <span style="font-size: 18px;">Offered by: <strong>' . $row['name'] . '</strong></span>
+                                <span style="font-size: 18px; margin-left: 40px; margin-top: 10px;">Email: '. $row['email'] .'</span>
+                                <span style="font-size: 18px; margin-left: 40px;">Contact: '. $row['contact'] .'<br></span>
+                            </div>
+                        </div>';
+
+                
+                        echo '</div>';
+                    }
                 } else {
                     echo '<p class="text-center" style="font-size: 18px;">No job opportunities yet.</p>';
                 }
+                
                 ?>
             </div>
             <ul id="pagination" class="pagination justify-content-center">
@@ -189,15 +200,23 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 </div>
 
 <script>
-    function showJobInfo(jobId) {
+    function showJobInfo(jobId, viewCount) {
     var modalOverlay = document.getElementById('modalOverlay');
     var modal = document.getElementById('jobInfoModal' + jobId);
     var pagination = document.getElementById('pagination');
 
+    viewCount++;
+    updateViewCount(jobId, viewCount);
+
+    var viewCountElement = document.querySelector('.job-view-count-' + jobId);
+    if (viewCountElement) {
+        viewCountElement.innerHTML = '(Views: ' + viewCount + ')';
+    }
+
     modalOverlay.style.display = 'block';
     modal.style.display = 'block';
     pagination.classList.add('pagination-hidden');
-    }
+}
 
     function closeJobInfo(jobId) {
         var modalOverlay = document.getElementById('modalOverlay');
@@ -222,13 +241,23 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
     };
 
     function deleteJob(jobId) {
-        // You can add an additional confirmation here if needed
         var confirmDelete = confirm('Are you sure you want to delete this job?');
 
         if (confirmDelete) {
-            // Perform the delete operation, for example, redirect to a delete script
             window.location.href = 'delete-job.php?id=' + jobId;
         }
+    }
+
+    function updateViewCount(jobId, viewCount) {
+        // Use AJAX to send a request to update the view count in the database
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Optional: You can handle the response if needed
+            }
+        };
+        xhttp.open("GET", "update-view-count.php?id=" + jobId + "&view_count=" + viewCount, true);
+        xhttp.send();
     }
 </script>
 
