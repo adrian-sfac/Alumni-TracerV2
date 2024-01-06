@@ -94,7 +94,7 @@ include "../../includes/sidebar.php";
 
                             <div class="mb-3 mt-3">
                                 <label for="feedback" class="form-label">Feedback:</label>
-                                <textarea class="form-control" name="feedback" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="8" required placeholder="Enter your feedback or concerns about the institution or system here..."></textarea>
+                                <textarea class="form-control" name="feedback" style="resize:none; border: 1px solid black; border-radius: 10px; padding: 10px;" rows="8" required placeholder="Enter your feedback or concerns about the institution and the website here..."></textarea>
                             </div>
 
                             <div class="mb-3 mt-3 form-check">
