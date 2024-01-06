@@ -117,7 +117,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 </head>
 <body class="g-sidenav-show  bg-gray-200">
 
-<?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar" || $_SESSION['role'] == "Student" || $_SESSION['role'] == "Alum Stud") {?>
+<?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar") {?>
 
 <?php include "../../includes/sidebar.php";?>
 
@@ -240,7 +240,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
 <?php include "../../includes/footer.php"?>
 
-<?php }?>
+
 
 <script>
     function showConfirmDialog(jobId) {
@@ -288,6 +288,8 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 </div>
 
 </main>
+
+<?php }?>
 
 <?php include '../../includes/script.php'?>
 

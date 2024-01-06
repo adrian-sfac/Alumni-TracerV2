@@ -76,6 +76,14 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../forum/forum-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-left-dots-fill ms-1"></i>
+            </div>
+            <span class="nav-link-text ms-1">Discussion Forum</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../feedback/feedback-display.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">comment</i>
@@ -255,25 +263,17 @@
               <li class="nav-item">
                 <a class="nav-link text-white " href="../news/news-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-newspaper"></i>
+                  <i class="bi bi-newspaper ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Add News</span>
+                  <span class="nav-link-text ms-1 ps-1">Add News</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-bank"></i>
+                  <i class="bi bi-bank ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Donation</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../forum/forum-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Forum</span>
+                  <span class="nav-link-text ms-1 ps-1">Donation</span>
                 </a>
               </li>
             </ul>
@@ -334,11 +334,35 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-request.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Pending Job Offers</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">Job Opportunities</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../forum/forum-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-left-dots-fill ms-1"></i>
+            </div>
+            <span class="nav-link-text ms-1">Discussion Forum</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../feedback/feedback-display.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">comment</i>
+            </div>
+            <span class="nav-link-text ms-1">Feedbacks</span>
           </a>
         </li>
         
@@ -476,16 +500,6 @@
                   <span class="nav-link-text ms-2 ps-1">Alumni Form Lists</span>
                 </a>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../feedback/feedback-display.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons">
-                      toc
-                    </i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Feedback Lists</span>
-                </a>
-              </li>
               <!-- <li class="nav-item ">
                 <a class="nav-link text-white " href="../alumni-officer/officer-list.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -507,25 +521,17 @@
               <li class="nav-item">
                 <a class="nav-link text-white " href="../news/news-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-newspaper"></i>
+                  <i class="bi bi-newspaper ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Add News</span>
+                  <span class="nav-link-text ms-1 ps-1">Add News</span>
                 </a>
               </li>
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-bank"></i>
+                  <i class="bi bi-bank ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Donation</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../forum/forum-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Forum</span>
+                  <span class="nav-link-text ms-1 ps-1">Donation</span>
                 </a>
               </li>
             </ul>
@@ -588,13 +594,29 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-request.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Pending Job Offers</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a class="nav-link text-white bg-gradient-dark" href="../../pages/job/job-display.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">Job Opportunities</span>
           </a>
-        </li>       
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../forum/forum-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-left-dots-fill ms-1"></i>
+            </div>
+            <span class="nav-link-text ms-1">Discussion Forum</span>
+          </a>
+        </li>
         
 
         <hr class="horizontal light mt-1 mb-1">
@@ -640,17 +662,9 @@
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-bank"></i>
+                  <i class="bi bi-bank ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Donation</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../forum/forum-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Forum</span>
+                  <span class="nav-link-text ms-1 ps-1">Donation</span>
                 </a>
               </li>
             </ul>
@@ -718,6 +732,14 @@
             <span class="nav-link-text ms-1">Job Opportunities</span>
           </a>
         </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../forum/forum-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-left-dots-fill ms-1"></i>
+            </div>
+            <span class="nav-link-text ms-1">Discussion Forum</span>
+          </a>
+        </li>
         
       
       <hr class="horizontal light mt-2 mb-1">
@@ -732,21 +754,13 @@
       <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-bank"></i>
+                  <i class="bi bi-bank ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Donation</span>
+                  <span class="nav-link-text ms-1 ps-1">Donation</span>
                 </a>
               </li>
-      <li class="nav-item">
-                <a class="nav-link text-white " href="../forum/forum-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Forum</span>
-                </a>
-              </li>
-      
               </ul>
+            
 
     <?php } else if ($_SESSION['role'] == "Alum Stud") {
             ?>
@@ -806,6 +820,22 @@
             <span class="nav-link-text ms-1">Job Opportunities</span>
           </a>
         </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../forum/forum-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-left-dots-fill ms-1"></i>
+            </div>
+            <span class="nav-link-text ms-1">Discussion Forum</span>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link text-white bg-gradient-dark" href="../feedback/feedback-form.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">comment</i>
+            </div>
+            <span class="nav-link-text ms-1">Feedback Form</span>
+          </a>
+        </li>
         
         <hr class="horizontal light mb-1">
         <li class="nav-item mt-3">
@@ -843,30 +873,13 @@ if ($num > 0) {
                 </a>
               </li>
       <li class="nav-item">
-                <a class="nav-link text-white " href="../feedback/feedback-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="material-icons opacity-10">sticky_note_2</i>
-                  </div>
-                  <span class="nav-link-text ms-1 ps-1">Feedback Form</span>
-                </a>
-              </li>
-      <li class="nav-item">
                 <a class="nav-link text-white " href="../donation/donation-form.php">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-bank"></i>
+                  <i class="bi bi-bank ms-1"></i>
                   </div>
-                  <span class="nav-link-text ms-2 ps-1">Donation</span>
+                  <span class="nav-link-text ms-1 ps-1">Donation</span>
                 </a>
               </li>
-      <li class="nav-item">
-                <a class="nav-link text-white " href="../forum/forum-form.php">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
-                  </div>
-                  <span class="nav-link-text ms-2 ps-1">Forum</span>
-                </a>
-              </li>
-
               </ul>
     <?php } ?>
   </div>

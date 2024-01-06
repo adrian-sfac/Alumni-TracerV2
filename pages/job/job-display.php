@@ -122,7 +122,7 @@ $totalPages = ceil($totalEntries / $entriesPerPage);
 
 <?php include "../../includes/navbar.php"?>
 
-<div class="container" style="margin-right: 5%;">
+<div class="container" style="margin-right: 3%;">
     <div class="row">
         <div class="col-md-10">
             <div class="job-list">
