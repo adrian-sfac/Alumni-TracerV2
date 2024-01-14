@@ -140,7 +140,7 @@ include '../../includes/head.php';
 
                             <div class="mb-3">
                                 <label for="job_desc" class="form-label" style="color: black;">Job Description:</label>
-                                <textarea class="form-control" name="job_desc" rows="8" style="resize:none; color: black;" required placeholder="Enter job description here..."></textarea>
+                                <textarea class="form-control" name="job_desc" rows="8" style="resize:none; color: black;" required placeholder="Enter job description here, please include details on how the user will be able to apply regarding on the job offer you will post (ex. sending the applicant's resume on your email)..."></textarea>
                             </div>
 
                             <div class="mb-3">
