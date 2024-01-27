@@ -91,6 +91,20 @@ foreach ($gender as $sex) {
                         </select>
                       </div>
                       <div class="input-div">
+                        <select name="campus" require>
+                            <option value="" selected disabled>campus</option>
+                            <?php
+                            foreach ($campus as $branch) {
+                            ?>
+                                <option value="<?php echo $branch['campus_id'] ?>">
+                                    <?php echo $branch['campus'] ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                      <div class="input-div">
                         <select name="civil" required>
                           <option value="" selected disabled >civil status</option>
                           <?php
@@ -130,7 +144,8 @@ foreach ($civil as $Civil) {
                         <span>Contact No</span>
                       </div>
                     </div>
-                    <div class="buttons">
+                    
+                    <div class="buttons mt-3">
                       <button class="next_button">Next Step</button>
                     </div>
                   </div>

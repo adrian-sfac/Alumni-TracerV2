@@ -24,6 +24,7 @@ $form_id = $_GET['formID'];
 
 $query = $db->query("SELECT * FROM tbl_form 
 LEFT JOIN tbl_gender ON tbl_gender.gender_id = tbl_form.gender_id 
+LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_form.campus_id 
 LEFT JOIN tbl_civil_status ON tbl_civil_status.civil_id = tbl_form.civil_id
 LEFT JOIN tbl_program ON tbl_program.program_id = tbl_form.program_id
 LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
@@ -90,7 +91,11 @@ $row_alum = mysqli_fetch_array($query);
                       <div id="emaill" class="input-div">
                         <input type="text" required require name="email" value="<?php echo $row_alum['gender']; ?>">
                         <span>Gender</span>
-                      </div>      
+                      </div>   
+                      <div id="emaill" class="input-div">
+                        <input type="text" required require name="email" value="<?php echo $row_alum['campus']; ?>">
+                        <span>Campus</span>
+                      </div>     
                       <div id="emaill" class="input-div">
                         <input type="text" required require name="email" value="<?php echo $row_alum['civil']; ?>">
                         <span>Civil Status</span>

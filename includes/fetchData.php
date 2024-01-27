@@ -5,6 +5,12 @@ if ($result->num_rows > 0) {
   $gender = mysqli_fetch_all($result, MYSQLI_ASSOC);
 } 
 
+$query = "SELECT * FROM tbl_campus";
+$result = $db->query($query);
+if ($result->num_rows > 0) {
+  $campus= mysqli_fetch_all($result, MYSQLI_ASSOC);
+} 
+
 $query1 = "SELECT * FROM tbl_civil_status";
 $result1 = $db->query($query1);
 if ($result1->num_rows > 0) {

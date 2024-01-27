@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
   $middlename    = mysqli_real_escape_string($db, $_POST['middlename']);
   $lastname    = mysqli_real_escape_string($db, $_POST['lastname']);
   $gender    = mysqli_real_escape_string($db, $_POST['gender']);
+  $campus    = mysqli_real_escape_string($db, $_POST['campus']);
   $civil    = mysqli_real_escape_string($db, $_POST['civil']);
   $email    = mysqli_real_escape_string($db, $_POST['email']);
   $pres_address    = mysqli_real_escape_string($db, $_POST['pres_address']);
@@ -62,7 +63,7 @@ if (isset($_POST['submit'])) {
 
   } 
   else {
-  $sql = "INSERT INTO tbl_form (alumni_id, firstname, middlename, lastname, batch_id, email, address, date_birth, birth_place, current_org, company_add, current_title, contact, gender_id, civil_id, program_id, loc_id, type_id, emp_status_id, length_id, attain_id, attain_field, attain_where, achieve_rewards1, achieve_rewards2, achieve_rewards3 , align_id, sat_id, collab_id, consent_id, topic, buss_name, nat_name, role_name, profit, buss_addr, buss_no) VALUES ('$userid', '$firstname', '$middlename', '$lastname', '$batch', '$email', '$pres_address', '$date_birth', '$birth_place', '$current_org', '$company_add', '$current_title', '$contact', '$gender', '$civil', '$program','$location', '$type', '$status', '$length' , '$attainment', '$attain_field', '$attain_where', '$achieve_rewards1', '$achieve_rewards2', '$achieve_rewards3', '$align', '$satisfy', '$collab', '$consent', '$topic', '$buss_name', '$nat_name', '$role_name', '$profit', '$buss_address', '$buss_no')";
+  $sql = "INSERT INTO tbl_form (alumni_id, firstname, middlename, lastname, batch_id, email, address, date_birth, birth_place, current_org, company_add, current_title, contact, gender_id, campus_id, civil_id, program_id, loc_id, type_id, emp_status_id, length_id, attain_id, attain_field, attain_where, achieve_rewards1, achieve_rewards2, achieve_rewards3 , align_id, sat_id, collab_id, consent_id, topic, buss_name, nat_name, role_name, profit, buss_addr, buss_no) VALUES ('$userid', '$firstname', '$middlename', '$lastname', '$batch', '$email', '$pres_address', '$date_birth', '$birth_place', '$current_org', '$company_add', '$current_title', '$contact', '$gender', '$campus', '$civil', '$program','$location', '$type', '$status', '$length' , '$attainment', '$attain_field', '$attain_where', '$achieve_rewards1', '$achieve_rewards2', '$achieve_rewards3', '$align', '$satisfy', '$collab', '$consent', '$topic', '$buss_name', '$nat_name', '$role_name', '$profit', '$buss_address', '$buss_no')";
 
   if (mysqli_query($db, $sql)) {
     $_SESSION['success_fill'] = 'Form Successfully Filled Up';

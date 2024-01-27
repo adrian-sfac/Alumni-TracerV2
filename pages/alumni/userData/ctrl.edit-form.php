@@ -14,6 +14,11 @@ if (isset($_POST['submit'])) {
   } else {
     $gender="";
   };
+  if (!empty($_POST['campus'])) {
+    $campus= mysqli_real_escape_string($db, $_POST['campus']);
+  } else {
+    $campus="";
+  };
   
   if (!empty($_POST['civil'])) {
   $civil    = mysqli_real_escape_string($db, $_POST['civil']);}
@@ -104,7 +109,7 @@ if (isset($_POST['submit'])) {
   } 
   else {
   $sql= "UPDATE tbl_form SET 
-  firstname='$firstname', middlename='$middlename', lastname='$lastname', gender_id='$gender', civil_id='$civil', email='$email', address='$pres_address',birth_place='$birth_place', date_birth='$date_birth', contact='$contact', program_id='$program', batch_id='$batch', attain_id='$attainment',attain_field='$attain_field', attain_where='$attain_where', achieve_rewards1='$achieve_rewards1', achieve_rewards2='$achieve_rewards2',achieve_rewards3='$achieve_rewards3', emp_status_id='$status', current_org='$current_org', loc_id='$location', type_id='$type', current_title='$current_title', 
+  firstname='$firstname', middlename='$middlename', lastname='$lastname', gender_id='$gender', campus_id='$campus', civil_id='$civil', email='$email', address='$pres_address',birth_place='$birth_place', date_birth='$date_birth', contact='$contact', program_id='$program', batch_id='$batch', attain_id='$attainment',attain_field='$attain_field', attain_where='$attain_where', achieve_rewards1='$achieve_rewards1', achieve_rewards2='$achieve_rewards2',achieve_rewards3='$achieve_rewards3', emp_status_id='$status', current_org='$current_org', loc_id='$location', type_id='$type', current_title='$current_title', 
   company_add='$company_add', length_id='$length', align_id='$align', sat_id='$satisfy', collab_id='$collab', topic='$topic', buss_name='$buss_name',nat_name='$nat_name', role_name='$role_name', profit='$profit', buss_addr='$buss_address', buss_no='$buss_no', consent_id='$consent' WHERE alumni_id='$userid'";
 
   if (mysqli_query($db, $sql)) {
