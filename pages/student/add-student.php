@@ -64,31 +64,33 @@ include '../../includes/head.php';
           <p>Enter your personal information to proceed.</p>
         </div>
         <div class="input-text">
-          <div class="input-div">
-            <input type="text" required require id="user_name" name="firstname">
-            <span>First Name</span>
-          </div>
-          <div class="input-div">
-            <input type="text" required name="middlename">
-            <span>Middle Name</span>
-          </div>
-          <div class="input-div">
-            <input type="text" required name="lastname">
-            <span>Last Name</span>
-          </div>
-        </div>
-
-        <div class="input-text">
-          <div class="input-div">
-            <input type="text" required require name="email">
-            <span>E-mail Address</span>
-          </div>
-        </div>
-
-        <div class="buttons">
-          <button class="next_button">Next Step</button>
-        </div>
-      </div>
+                      <div class="input-div">
+                        <input type="text" required require id="user_name" name="stud_no">
+                        <span>Student Number</span>
+                      </div>
+                      <div class="input-div">
+                        <input type="text" required require id="user_name" name="firstname">
+                        <span>First Name</span>
+                      </div>
+                      <div class="input-div">
+                        <input type="text" required name="middlename">
+                        <span>Middle Name</span>
+                      </div>
+                      <div class="input-div">
+                        <input type="text" required name="lastname">
+                        <span>Last Name</span>
+                      </div>
+                    </div>
+                    <div class="input-text">
+                      <div class="input-div">
+                        <input type="text" required require name="email">
+                        <span>E-mail Address</span>
+                      </div>
+                    </div>
+                    <div class="buttons">
+                      <button class="next_button">Next Step</button>
+                    </div>
+                  </div>
       <div class="main">
         <img class="resize" src="../../assets/img/sfac.png">
         <div class="text">

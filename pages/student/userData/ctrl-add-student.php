@@ -4,6 +4,7 @@ require '../../../includes/conn.php';
 
 if (isset($_POST['submit'])) {
 
+  $stud_no    = mysqli_real_escape_string($db, $_POST['stud_no']);
   $firstname    = mysqli_real_escape_string($db, $_POST['firstname']);
   $middlename    = mysqli_real_escape_string($db, $_POST['middlename']);
   $lastname    = mysqli_real_escape_string($db, $_POST['lastname']);
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
 
   if ($password == $confirm_pass) {
     $hashedPwd = password_hash($confirm_pass, PASSWORD_DEFAULT);
-    $insertStudent = mysqli_query($db, "INSERT INTO tbl_student (firstname, middlename, lastname, email, username, password) VALUES ('$firstname','$middlename', '$lastname', '$email', '$username', '$hashedPwd')") or die(mysqli_error($db));
+    $insertStudent = mysqli_query($db, "INSERT INTO tbl_student (stud_no, firstname, middlename, lastname, email, username, password) VALUES ('$stud_no','$firstname','$middlename', '$lastname', '$email', '$username', '$hashedPwd')") or die(mysqli_error($db));
     $_SESSION['Student_added'] = 'Student Successfully Added!';
     header("location: ../add-student.php");
   } else {

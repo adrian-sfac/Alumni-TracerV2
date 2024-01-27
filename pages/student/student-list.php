@@ -71,8 +71,8 @@ while ($row = mysqli_fetch_array($liststudent)) {
         echo ' <img class=" border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
     }?>
                       </td>
-                      <td class="text-sm font-weight-normal"><?php echo $row['firstname']; ?></td>
-                      <td class="text-sm font-weight-normal"><?php echo $row['lastname']; ?></td>
+                      <td class="text-sm font-weight-normal"><?php echo $row['stud_no']; ?></td>
+                      <td class="text-sm font-weight-normal"><?php echo $row['fullname']; ?></td>
                       <td class="text-sm font-weight-normal"><?php echo $row['email']; ?></td>
                       <td class="text-sm font-weight-normal"><?php echo $row['username']; ?></td>
                       <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin") {?>

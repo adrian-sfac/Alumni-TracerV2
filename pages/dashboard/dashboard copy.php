@@ -36,12 +36,11 @@ include '../../includes/graph-data.php';
     <!-- Navbar -->
     <?php include "../../includes/navbar.php"?>
     <!-- End Navbar -->
-
     <div class="container-fluid py-4">
-    <!-- Dashboard Header -->
-    <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin") {?>
-        <h2 class="mb-1">Dashboard</h2>
-        <div class="row">
+
+        <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin") {?>
+          <h2 class="mb-1">Dashboard</h2>
+          <div class="row">
             <div class="col-lg-6 mt-4 mt-lg-0 ">
               <div class="card mb-5">
                 <div class="card-header pb-0 p-3">
@@ -50,8 +49,7 @@ include '../../includes/graph-data.php';
 
                   </div>
                 </div>
-        <div class="row">
-        <div class="card-body p-3">
+              <div class="card-body p-3">
                 <div class="row">
                   <div class="col-5 text-center">
                     <div class="chart">
@@ -166,9 +164,7 @@ include '../../includes/graph-data.php';
       </div>
     </div>
   </div>
-        </div>
-
-        <div class="col-lg-6 mt-4 mt-lg-0 ">
+            <div class="col-lg-6 mt-4 mt-lg-0 ">
               <div class="card mb-5">
                 <div class="card-header pb-0  p-3">
                 <div class="d-flex align-items-center">
@@ -176,8 +172,7 @@ include '../../includes/graph-data.php';
 
               </div>
             </div>
-        <div class="row">
-        <div class="card-body p-3 ">
+          <div class="card-body p-3 ">
             <div class="row">
               <div class="col-5 text-center">
                 <div class="chart">
@@ -272,8 +267,8 @@ include '../../includes/graph-data.php';
   </div>
 </div>
 </div>
-        </div>
-        <div class="row">
+
+<div class="row">
     <div class="col-lg-4 col-md-2 mt-2 mb-5 mx-auto">
         <div class="card z-index-2">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -309,8 +304,9 @@ include '../../includes/graph-data.php';
     </div>
 </div>
 
-<div class="row">
-<div class="col-xl-3 col-sm-6 mb-xl-0">
+
+          <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0">
             <div class="card">
               <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
@@ -319,15 +315,16 @@ include '../../includes/graph-data.php';
                 <div class="text-end pt-1">
                   <p class="text-sm mb-0 text-capitalize">Total Alumni</p>
                   <?php
-                    $alumni_query = "SELECT alumni_id from tbl_form";
-                        $user_query_run = mysqli_query($db, $alumni_query);
+$alumni_query = "SELECT alumni_id from tbl_form";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-                        if ($user_total = mysqli_num_rows($user_query_run)) {
-                            echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                        } else {
-                            echo '<h4 class="mb-0">0</h4>';
-                        }
-                  ?>
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h4 class="mb-0">No data</h4>';
+    }
+
+    ?>
 
                 </div>
               </div>
@@ -341,41 +338,99 @@ include '../../includes/graph-data.php';
               </div>
             </div>
           </div>
-
-          <div class="col-xl-3 col-sm-6 mb-xl-0">
-          <div class="card">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
               <div class="card-header p-3 pt-2">
-                  <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                      <i class="material-icons opacity-10">groups</i>
-                  </div>
-                  <div class="text-end pt-1">
-                      <p class="text-sm mb-0 text-capitalize">Employed</p>
+                <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">Full-time</p>
 
-                      <?php
-                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3)";
-                      $user_query_run = mysqli_query($db, $alumni_query);
+                  <?php
+$alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 1";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-                      if ($user_query_run) {
-                          $user_total = mysqli_fetch_assoc($user_query_run)['total_users'];
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h4 class="mb-0">No data</h4>';
+    }
 
-                      ?>
-                  </div>
+    ?>
+                </div>
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                          <span class="btn-inner--text">See more</span>
-                          <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                      </button></a>
+                <a href="../Employment_Status/full-time-list.php"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
               </div>
+            </div>
           </div>
-      </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">Part-time</p>
+                  <?php
+$alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 2";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-      <div class="col-xl-3 col-sm-6 mb-xl-0">
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../Employment_Status/part-time-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">Self-employed</p>
+                  <?php
+$alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 3";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../Employment_Status/self-employed-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4 mt-4">
             <div class="card">
               <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
@@ -384,16 +439,16 @@ include '../../includes/graph-data.php';
                 <div class="text-end pt-1">
                   <p class="text-sm mb-0 text-capitalize">Unemployed</p>
                   <?php
-                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4";
-                      $user_query_run = mysqli_query($db, $alumni_query);
+$alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-                      if ($user_total = mysqli_num_rows($user_query_run)) {
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
 
-                  ?>
+    ?>
                 </div>
               </div>
               <hr class="dark horizontal my-0">
@@ -405,205 +460,259 @@ include '../../includes/graph-data.php';
               </div>
             </div>
           </div>
-      </div>
 
-        <h2 class="mb-4 mt-3">Bacoor Graduates</h2>
-        <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4 mt-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">CS Department</p>
+                  <?php
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 1";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../department-list/cs-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button" >
+                  <span class="btn-inner--text"  >See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4 mt-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-secondary shadow-secondary text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">BA Department </p>
+                  <?php
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 2";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../department-list/ba-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+
+<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4 mt-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">EDUC Department</p>
+                  <?php
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 3";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../department-list/educ-dept.php" target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button> </a>
+              </div>
+            </div>
+          </div>
+
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">HM / HRM Department</p>
+                  <?php
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 4";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../department-list/hrm-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">groups</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">LA Department</p>
+                  <?php
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 6";
+    $user_query_run = mysqli_query($db, $alumni_query);
+
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
+
+    ?>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                <a href="../department-list/la-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <span class="btn-inner--text">See more</span>
+                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
+                </button></a>
+              </div>
+            </div>
+          </div>
+<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4">
             <div class="card">
               <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                   <i class="material-icons opacity-10">groups</i>
                 </div>
                 <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Total Users</p>
+                  <p class="text-sm mb-0 text-capitalize">ENG Department</p>
                   <?php
-                    $alumni_query = "SELECT alumni_id from tbl_form WHERE campus_id = 1";
-                        $user_query_run = mysqli_query($db, $alumni_query);
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 7";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-                        if ($user_total = mysqli_num_rows($user_query_run)) {
-                            echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                        } else {
-                            echo '<h4 class="mb-0">0</h4>';
-                        }
-                  ?>
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
 
+    ?>
                 </div>
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../alumni/alumni-form.php"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                  
+                <a href="../department-list/eng-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                 </button></a>
               </div>
             </div>
           </div>
-
-          <div class="col-xl-3 col-sm-6 mb-xl-0">
-          <div class="card">
-              <div class="card-header p-3 pt-2">
-                  <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                      <i class="material-icons opacity-10">groups</i>
-                  </div>
-                  <div class="text-end pt-1">
-                      <p class="text-sm mb-0 text-capitalize">Employed</p>
-
-                      <?php
-                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3) AND campus_id = 1";
-                      $user_query_run = mysqli_query($db, $alumni_query);
-
-                      if ($user_query_run) {
-                          $user_total = mysqli_fetch_assoc($user_query_run)['total_users'];
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
-
-                      ?>
-                  </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                          <span class="btn-inner--text">See more</span>
-                          <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                      </button></a>
-              </div>
-          </div>
-      </div>
-
-      <div class="col-xl-3 col-sm-6 mb-xl-0">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 py-4">
             <div class="card">
               <div class="card-header p-3 pt-2">
-                <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
+                <div class="icon icon-lg icon-shape bg-gradient-danger shadow-danger text-center border-radius-xl mt-n4 position-absolute">
                   <i class="material-icons opacity-10">groups</i>
                 </div>
                 <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Unemployed</p>
+                  <p class="text-sm mb-0 text-capitalize">NURS Department</p>
                   <?php
-                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4 AND campus_id = 1";
-                      $user_query_run = mysqli_query($db, $alumni_query);
+$alumni_query =
+        "SELECT * FROM tbl_form f
+                  LEFT JOIN tbl_program p
+                  ON f.program_id = p.program_id
+                  LEFT JOIN tbl_department d
+                  ON d.dep_id = p.dep_id WHERE p.dep_id = 8";
+    $user_query_run = mysqli_query($db, $alumni_query);
 
-                      if ($user_total = mysqli_num_rows($user_query_run)) {
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
+    if ($user_total = mysqli_num_rows($user_query_run)) {
+        echo '<h4 class="mb-0">' . $user_total . '</h4>';
+    } else {
+        echo '<h6 class="mb-0">No data</h6>';
+    }
 
-                  ?>
+    ?>
                 </div>
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../Employment_Status/unemployed-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                <a href="../department-list/nurs-dept.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                 </button></a>
               </div>
             </div>
           </div>
-        </div>
-
-        <h2 class="mb-4 mt-3">Las Piñas Graduates</h2>
-        <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
-            <div class="card">
-              <div class="card-header p-3 pt-2">
-                <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                  <i class="material-icons opacity-10">groups</i>
                 </div>
-                <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Total Users</p>
-                  <?php
-                    $alumni_query = "SELECT alumni_id from tbl_form WHERE campus_id = 2";
-                        $user_query_run = mysqli_query($db, $alumni_query);
 
-                        if ($user_total = mysqli_num_rows($user_query_run)) {
-                            echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                        } else {
-                            echo '<h4 class="mb-0">0</h4>';
-                        }
-                  ?>
-
-                </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                <a href="../alumni/alumni-form.php"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                  
-                  <span class="btn-inner--text">See more</span>
-                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                </button></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-sm-6 mb-xl-0">
-          <div class="card">
-              <div class="card-header p-3 pt-2">
-                  <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                      <i class="material-icons opacity-10">groups</i>
-                  </div>
-                  <div class="text-end pt-1">
-                      <p class="text-sm mb-0 text-capitalize">Employed</p>
-
-                      <?php
-                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3) AND campus_id = 2";
-                      $user_query_run = mysqli_query($db, $alumni_query);
-
-                      if ($user_query_run) {
-                          $user_total = mysqli_fetch_assoc($user_query_run)['total_users'];
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
-
-                      ?>
-                  </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                          <span class="btn-inner--text">See more</span>
-                          <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                      </button></a>
-              </div>
-          </div>
-      </div>
-
-      <div class="col-xl-3 col-sm-6 mb-xl-0">
-            <div class="card">
-              <div class="card-header p-3 pt-2">
-                <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
-                  <i class="material-icons opacity-10">groups</i>
-                </div>
-                <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Unemployed</p>
-                  <?php
-                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4 AND campus_id = 2";
-                      $user_query_run = mysqli_query($db, $alumni_query);
-
-                      if ($user_total = mysqli_num_rows($user_query_run)) {
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
-
-                  ?>
-                </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                <a href="../Employment_Status/unemployed-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                  <span class="btn-inner--text">See more</span>
-                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                </button></a>
-              </div>
-            </div>
-        </div>
-</div>
+                <h3 class="mb-1">Alumni Graduates of Bacoor Campus</h3>
+                
 
         <?php } else if ($_SESSION['role'] == "Registrar") {
     ?> <div class="row">
