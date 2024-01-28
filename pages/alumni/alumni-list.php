@@ -65,10 +65,10 @@ while ($row = mysqli_fetch_array($listalumni)) {
                     <tr>
                       <td>
                         <?php if (empty($row['img'])) {
-        echo '<img class="border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="../../assets/img/image.png"/>';
-    } else {
-        echo ' <img class=" border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
-    }?>
+                            echo '<img class="border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="../../assets/img/image.png"/>';
+                        } else {
+                            echo ' <img class=" border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" "/>';
+                        }?>
                       </td>
                       <td class="text-sm font-weight-normal"><?php echo $row['stud_no']; ?></td>
                       <td class="text-sm font-weight-normal"><?php echo $row['fullname']; ?></td>

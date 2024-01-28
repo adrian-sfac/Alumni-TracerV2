@@ -40,7 +40,7 @@ include '../../includes/graph-data.php';
     <div class="container-fluid py-4">
     <!-- Dashboard Header -->
     <?php if ($_SESSION['role'] == "Super Administrator" || $_SESSION['role'] == "Admin" || $_SESSION['role'] == "Registrar") {?>
-        <h2 class="mb-1">Dashboard</h2>
+        <h2 class="mb-1">Analytics</h2>
         <div class="row">
             <div class="col-lg-6 mt-4 mt-lg-0 ">
               <div class="card mb-5">
@@ -407,7 +407,9 @@ include '../../includes/graph-data.php';
           </div>
       </div>
 
-        <h2 class="mb-4 mt-3">Bacoor Graduates</h2>
+      <?php $select_campus = mysqli_query($db, "SELECT * FROM tbl_campus ORDER BY campus ASC");
+        while ($row = mysqli_fetch_array($select_campus)) { ?>
+        <h2 class="mb-4 mt-3"><b><?php echo $row['campus']?></b> Graduates</h2>
         <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0">
             <div class="card">
@@ -418,7 +420,7 @@ include '../../includes/graph-data.php';
                 <div class="text-end pt-1">
                   <p class="text-sm mb-0 text-capitalize">Total Users</p>
                   <?php
-                    $alumni_query = "SELECT alumni_id from tbl_form WHERE campus_id = 1";
+                    $alumni_query = "SELECT alumni_id from tbl_form WHERE campus_id = '$row[campus_id]'";
                         $user_query_run = mysqli_query($db, $alumni_query);
 
                         if ($user_total = mysqli_num_rows($user_query_run)) {
@@ -432,7 +434,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../alumni/alumni-form.php"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                <a href="../alumni/alumni-form.php?=<?php echo $row['campus']?>"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
@@ -451,7 +453,7 @@ include '../../includes/graph-data.php';
                       <p class="text-sm mb-0 text-capitalize">Employed</p>
 
                       <?php
-                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3) AND campus_id = 1";
+                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3) AND campus_id = '$row[campus_id]'";
                       $user_query_run = mysqli_query($db, $alumni_query);
 
                       if ($user_query_run) {
@@ -466,7 +468,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <a href="../Employment_Status/full-time-list.php?=<?php echo $row['campus']?>" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
                           <span class="btn-inner--text">See more</span>
                           <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                       </button></a>
@@ -483,7 +485,7 @@ include '../../includes/graph-data.php';
                 <div class="text-end pt-1">
                   <p class="text-sm mb-0 text-capitalize">Unemployed</p>
                   <?php
-                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4 AND campus_id = 1";
+                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4 AND campus_id = '$row[campus_id]'";
                       $user_query_run = mysqli_query($db, $alumni_query);
 
                       if ($user_total = mysqli_num_rows($user_query_run)) {
@@ -497,7 +499,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../Employment_Status/unemployed-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                <a href="../Employment_Status/unemployed-list.php?=<?php echo $row['campus']?>"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                 </button></a>
@@ -505,105 +507,7 @@ include '../../includes/graph-data.php';
             </div>
           </div>
         </div>
-
-        <h2 class="mb-4 mt-3">Las Piñas Graduates</h2>
-        <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
-            <div class="card">
-              <div class="card-header p-3 pt-2">
-                <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                  <i class="material-icons opacity-10">groups</i>
-                </div>
-                <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Total Users</p>
-                  <?php
-                    $alumni_query = "SELECT alumni_id from tbl_form WHERE campus_id = 2";
-                        $user_query_run = mysqli_query($db, $alumni_query);
-
-                        if ($user_total = mysqli_num_rows($user_query_run)) {
-                            echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                        } else {
-                            echo '<h4 class="mb-0">0</h4>';
-                        }
-                  ?>
-
-                </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                <a href="../alumni/alumni-form.php"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                  
-                  <span class="btn-inner--text">See more</span>
-                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                </button></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-sm-6 mb-xl-0">
-          <div class="card">
-              <div class="card-header p-3 pt-2">
-                  <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                      <i class="material-icons opacity-10">groups</i>
-                  </div>
-                  <div class="text-end pt-1">
-                      <p class="text-sm mb-0 text-capitalize">Employed</p>
-
-                      <?php
-                      $alumni_query = "SELECT COUNT(*) AS total_users FROM tbl_form WHERE emp_status_id IN (1, 2, 3) AND campus_id = 2";
-                      $user_query_run = mysqli_query($db, $alumni_query);
-
-                      if ($user_query_run) {
-                          $user_total = mysqli_fetch_assoc($user_query_run)['total_users'];
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
-
-                      ?>
-                  </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                          <span class="btn-inner--text">See more</span>
-                          <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                      </button></a>
-              </div>
-          </div>
-      </div>
-
-      <div class="col-xl-3 col-sm-6 mb-xl-0">
-            <div class="card">
-              <div class="card-header p-3 pt-2">
-                <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
-                  <i class="material-icons opacity-10">groups</i>
-                </div>
-                <div class="text-end pt-1">
-                  <p class="text-sm mb-0 text-capitalize">Unemployed</p>
-                  <?php
-                  $alumni_query = "SELECT emp_status_id FROM tbl_form WHERE emp_status_id = 4 AND campus_id = 2";
-                      $user_query_run = mysqli_query($db, $alumni_query);
-
-                      if ($user_total = mysqli_num_rows($user_query_run)) {
-                          echo '<h4 class="mb-0">' . $user_total . '</h4>';
-                      } else {
-                          echo '<h4 class="mb-0">0</h4>';
-                      }
-
-                  ?>
-                </div>
-              </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
-                <a href="../Employment_Status/unemployed-list.php"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
-                  <span class="btn-inner--text">See more</span>
-                  <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
-                </button></a>
-              </div>
-            </div>
-        </div>
-</div>
+        <?php }?>
     
         <?php } else if ($_SESSION['role'] == "Alum Stud") {
     ?><div class="row">
