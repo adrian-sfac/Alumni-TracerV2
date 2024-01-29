@@ -19,6 +19,7 @@
 include '../../includes/session.php';
 // End Session 
 include '../../includes/head.php';
+include '../../includes/fetchData.php';
 ?>
 
 
@@ -56,7 +57,7 @@ include '../../includes/head.php';
     </ul>
   </div>
   <div class="right-side">
-    <form method="POST" action="userData/ctrl-add-student.php">
+    <form method="POST" action="userData/ctrl-add-student.php" enctype="multipart/form-data">
       <div class="main active">
         <img class="resize" src="../../assets/img/sfac.png">
         <div class="text">
@@ -87,6 +88,20 @@ include '../../includes/head.php';
                         <span>E-mail Address</span>
                       </div>
                     </div>
+                    <div class="input-text">
+                                <select name="batch_id">                   
+                                    <option selected disabled>Batch List</option>                         
+                                    <?php
+                                    foreach ($batch as $Batch) {
+                                    ?>
+                                        <option value="<?php echo $Batch['batch_id'] ?>">
+                                            <?php echo $Batch['batch'] ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                     <div class="buttons">
                       <button class="next_button">Next Step</button>
                     </div>

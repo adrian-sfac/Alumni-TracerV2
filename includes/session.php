@@ -53,6 +53,7 @@ if (!empty($_SESSION['role'])) {
     $user_image = $row_stud['img'];
     $user_name = $row_stud['username'];
     $email = $row_stud['email'];
+    $batch_id = $row_stud['batch_id'];
     
 
     if ($student_id == false) {

@@ -111,7 +111,15 @@ include '../../includes/fetchData.php';
     ?>
             Swal.fire("Batch", "Added Successfully", "success");
     <?php 
-    unset($_SESSION['studAdded']);
+    unset($_SESSION['addBatch']);
+  } 
+  ?>
+  <?php 
+      if (!empty($_SESSION['successDel'])) {     
+    ?>
+            Swal.fire("Batch", "Deleted Successfully", "success");
+    <?php 
+    unset($_SESSION['successDel']);
   } 
   ?>
 
