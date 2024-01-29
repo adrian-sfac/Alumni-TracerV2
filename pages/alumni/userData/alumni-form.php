@@ -260,7 +260,7 @@ if (isset($_GET['department'])) {
                                             <input class="form-check-input mt-1" type="checkbox" value="all" name="all" id="all">
                                         </div>
                                     </th>
-                                    <!-- <th></th> -->
+                                    <th></th>
                                     <th>Student No.</th>
                                     <th>Fullname</th>
                                     <th>Batch</th>
@@ -277,27 +277,30 @@ if (isset($_GET['department'])) {
                             <tbody>
                               <?php
                               if (isset($_GET['submit'])) { 
-                                if ($_SESSION['campus'] == "All" && $_SESSION['department'] == "All") {
-                                  $return_query = mysqli_query($db, "SELECT * FROM tbl_form 
-                                      LEFT JOIN tbl_campus USING (campus_id)
-                                      LEFT JOIN tbl_program ON tbl_program.program_id = tbl_form.program_id
-                                      LEFT JOIN tbl_alumni ON tbl_alumni.alumni_id = tbl_form.alumni_id
-                                      LEFT JOIN tbl_employment_status ON tbl_employment_status.emp_status_id = tbl_form.emp_status_id
-                                      LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
-                                      LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
-                                      WHERE 
-                                          tbl_form.firstname LIKE '%$_GET[search]%' 
-                                          OR tbl_form.lastname LIKE '%$_GET[search]%'
-                                          OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
-                                          OR tbl_batch.batch LIKE '%$_GET[search]%'
-                                          OR tbl_program.course_abv LIKE '%$_GET[search]%'
-                                          OR tbl_form.current_title LIKE '%$_GET[search]%'
-                                          OR tbl_employment_status.status LIKE '%$_GET[search]%'
-                                          OR tbl_form.email LIKE '%$_GET[search]%'
-                                          OR tbl_form.contact LIKE '%$_GET[search]%'
-                                          OR tbl_campus.campus LIKE '%$_GET[search]%'
-                                          OR tbl_department.department LIKE '%$_GET[search]%'
-                                  ") or die(mysqli_error($db)); 
+                                  if ($_SESSION['campus'] == "All" && $_SESSION['department'] == "All") {
+                                      $return_query = mysqli_query($db, "SELECT * FROM tbl_form 
+                                          LEFT JOIN tbl_campus USING (campus_id)
+                                          LEFT JOIN tbl_program ON tbl_program.program_id = tbl_form.program_id
+                                          LEFT JOIN tbl_alumni ON tbl_alumni.alumni_id = tbl_form.alumni_id
+                                          LEFT JOIN tbl_employment_status ON tbl_employment_status.emp_status_id = tbl_form.emp_status_id
+                                          LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
+                                          LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
+                                          WHERE 
+                                              (
+                                                  tbl_form.firstname LIKE '%$_GET[search]%' 
+                                                  OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                  OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
+                                                  OR tbl_batch.batch LIKE '%$_GET[search]%'
+                                                  OR tbl_program.course_abv LIKE '%$_GET[search]%'
+                                                  OR tbl_form.current_title LIKE '%$_GET[search]%'
+                                                  OR tbl_employment_status.status LIKE '%$_GET[search]%'
+                                                  OR tbl_form.email LIKE '%$_GET[search]%'
+                                                  OR tbl_form.contact LIKE '%$_GET[search]%'
+                                                  OR tbl_campus.campus LIKE '%$_GET[search]%'
+                                                  OR tbl_department.department LIKE '%$_GET[search]%'
+                                              )
+                                          ")
+                                      or die(mysqli_error($db)); 
                                   } else { 
                                       if ($_SESSION['campus'] != "All" && $_SESSION['department'] == "All") { 
                                       $return_query = mysqli_query($db, "SELECT * FROM tbl_form 
@@ -371,13 +374,13 @@ if (isset($_GET['department'])) {
                                               )
                                           ")
                                       or die(mysqli_error($db));
-                                  }}
+                                  }
                               
                               while ($row = mysqli_fetch_array($return_query)) {
                                   $id = $row['alumni_id']; 
                                   ?>
                                   <tr>
-                                      <!-- <td><div class="form-check"><input class="form-check-input mt-1" type="checkbox" value="all" name="all" id="all"></div></td> -->
+                                      <td><div class="form-check"><input class="form-check-input mt-1" type="checkbox" value="all" name="all" id="all"></div></td>
                                       <td><?php echo (empty($row['img'])) ? '<img src="../../assets/img/image.png" class="border-radius-lg shadow-sm zoom" style="height:80px; width="80px"; object-fit:cover;" alt="img">' : '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '"
                                           class="border-radius-lg shadow-sm zoom" style="height:80px; width="80px"; object-fit:cover;" alt="img">' ?></td></div>
                                       <td><?php echo $row['stud_no']; ?></td>
@@ -402,7 +405,7 @@ if (isset($_GET['department'])) {
                                           </td>
                                       <?php } ?>
                                   </tr>
-                              <?php }} 
+                              <?php }}}
                               ?>
                           </tbody>
                         </table>
