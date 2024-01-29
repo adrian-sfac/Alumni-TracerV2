@@ -434,7 +434,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../alumni/alumni-form.php?=<?php echo $row['campus']?>"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                <a href="../alumni/alumni-form.php?campus=<?php echo $row['campus']?>"  target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
@@ -468,7 +468,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                  <a href="../Employment_Status/full-time-list.php?=<?php echo $row['campus']?>" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                  <a href="../Employment_Status/full-time-list.php?campus=<?php echo $row['campus']?>" target="_blank" role="button"><button class="btn btn-icon btn-3 btn-dark" type="button">
                           <span class="btn-inner--text">See more</span>
                           <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                       </button></a>
@@ -499,7 +499,7 @@ include '../../includes/graph-data.php';
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                <a href="../Employment_Status/unemployed-list.php?=<?php echo $row['campus']?>"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
+                <a href="../Employment_Status/unemployed-list.php?campus=<?php echo $row['campus']?>"  target="_blank"><button class="btn btn-icon btn-3 btn-dark" type="button">
                   <span class="btn-inner--text">See more</span>
                   <span class="btn-inner--icon"><i class="material-icons">visibility</i></span>
                 </button></a>

@@ -193,71 +193,112 @@ include '../../includes/graph-data.php';
 
 <script src="https://cdn.datatables.net/plug-ins/1.13.1/api/fnReloadAjax.js"></script>
 <!-- Script Table of Alumni Form List -->
-
+  
 
   <script>
-$(document).ready(function () {
-  var table = $('#searchTable').DataTable({
-        "ajax": {
-          "url": "userData/ctrl.table_alumni-form.php",
-          "dataSrc": ""
-          },
-        "columns": [
-          { "data": 'form_id',
-              "render": function (data, type, row) {
-                if ($("#all").is(":checked")) {
-                  return '<div class="form-check"><input class="form-check-input checkAll" type="checkbox" value="'+data+'" name="checkRow[]" id="row'+data+'" checked></div>';
-      } else {
-        return '<div class="form-check"><input class="form-check-input checkAll" type="checkbox" value="'+data+'" name="checkRow[]" id="row'+data+'"></div>';
-      }
-      } 
-    },
+// $(document).ready(function () {
+//   var table = $('#searchTable').DataTable({
+//         "ajax": {
+//           "url": "userData/ctrl.table_alumni-form.php",
+//           "dataSrc": ""
+//           },
+//         "columns": [
+//           { "data": 'form_id',
+//               "render": function (data, type, row) {
+//                 if ($("#all").is(":checked")) {
+//                   return '<div class="form-check"><input class="form-check-input checkAll" type="checkbox" value="'+data+'" name="checkRow[]" id="row'+data+'" checked></div>';
+//       } else {
+//         return '<div class="form-check"><input class="form-check-input checkAll" type="checkbox" value="'+data+'" name="checkRow[]" id="row'+data+'"></div>';
+//       }
+//       } 
+//     },
 
-            { "data": 'image',
-              "render": function (data, type, row) {
-                if (data) {
-return '<img class=" border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="data:image/jpeg;base64,' + data + '" "/>';
-                } else {
-                  return '<img class="border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="../../assets/img/image.png"/>';
-                }
-      }
-             },
-            { "data": 'stud_no' },
-            { "data": 'fullname' },
-            { "data": 'batch' },
-            { "data": 'course_abv' },
-            { "data": 'current_title' },
-            { "data": 'status' },
-            { "data": 'email' },
-            { "data": 'contact' },
-            { "data": 'form_id',
-              "render": function (data, type, row) {
-               if ("<?php echo $_SESSION['role']; ?>" == "Super Administrator" ||  "<?php echo $_SESSION['role']; ?>" == "Admin") {
-return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-success px-3 mb-0" href="view-data.php?formID='+data+'"><i class="material-icons text-sm me-2">visibility</i>View</a><a class="btn btn-link text-danger text-gradient px-3 mb-0" href="../alumni/userData/ctrl-del-form.php?formID='+data+'"><i class="material-icons text-sm me-2"  >delete</i>Delete</a></td>';
-                } else if ("<?php echo $_SESSION['role'] ?>" == "Registrar") {
- return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-success px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">visibility</i>View</a></td>'; }
-                }
-             },
+//             { "data": 'image',
+//               "render": function (data, type, row) {
+//                 if (data) {
+// return '<img class=" border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="data:image/jpeg;base64,' + data + '" "/>';
+//                 } else {
+//                   return '<img class="border-radius-lg shadow-sm zoom" style="height:80px; width:80px;" src="../../assets/img/image.png"/>';
+//                 }
+//       }
+//              },
+//             { "data": 'stud_no' },
+//             { "data": 'fullname' },
+//             { "data": 'batch' },
+//             { "data": 'course_abv' },
+//             { "data": 'current_title' },
+//             { "data": 'status' },
+//             { "data": 'email' },
+//             { "data": 'contact' },
+//             { "data": 'form_id',
+//               "render": function (data, type, row) {
+//                if ("<?php echo $_SESSION['role']; ?>" == "Super Administrator" ||  "<?php echo $_SESSION['role']; ?>" == "Admin") {
+// return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-success px-3 mb-0" href="view-data.php?formID='+data+'"><i class="material-icons text-sm me-2">visibility</i>View</a><a class="btn btn-link text-danger text-gradient px-3 mb-0" href="../alumni/userData/ctrl-del-form.php?formID='+data+'"><i class="material-icons text-sm me-2"  >delete</i>Delete</a></td>';
+//                 } else if ("<?php echo $_SESSION['role'] ?>" == "Registrar") {
+//  return ' <td class="text-sm font-weight-normal"><a class="btn btn-link text-success px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">visibility</i>View</a></td>'; }
+//                 }
+//              },
           
-        ],
+//         ],
 
-        "columnDefs": [
-    { "orderable": false, "targets": 0 }
-  ]
-    });
+//         "columnDefs": [
+//     { "orderable": false, "targets": 0 }
+//   ]
+//     });
 
- $("#all").click(function () {
-      if ($("#all").is(":checked")) {
-        table.ajax.reload();
-      } else {
-        table.ajax.reload();
-      }
-    });
+//  $("#all").click(function () {
+//       if ($("#all").is(":checked")) {
+//         table.ajax.reload();
+//       } else {
+//         table.ajax.reload();
+//       }
+//     });
     
-});
+// });
 
   </script>
   <!-- End Table of Alumni Form List -->
+
+<!-- Script for Alumni Form Table -->
+<script>
+  $(function () {
+    var table = $('#searchTable').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+
+    table.buttons().container().appendTo('#searchTable_wrapper .col-md-6:eq(0)');
+  });
+</script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+<!-- Your existing HTML code -->
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#searchTable").DataTable();
+  });
+</script>
+
+</body>
+</html>
+
+<!-- End Script for Alumni Form Table -->
+
 
   <!-- Update View Count on News -->
 <script>
