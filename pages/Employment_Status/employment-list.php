@@ -56,7 +56,7 @@ if (isset($_GET['campus'])) {
     <div class="row mt-4">
         <div class="col-12">
             <div class="card px-4 pb-4">
-                <h2 class="text-center mb-0 pt-4">Alumni Unemployed List</h2>
+                <h2 class="text-center mb-0 pt-4">Alumni Employed List</h2>
                 <h5 class="text-center">
                 <b>Campus :</b> <?php echo $_SESSION['campus'] ?><br>
                 <?php
@@ -212,7 +212,7 @@ if (isset($_GET['campus'])) {
                                             LEFT JOIN tbl_employment_status ON tbl_employment_status.emp_status_id = tbl_form.emp_status_id
                                             LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
                                             WHERE 
-                                                tbl_form.emp_status_id IN (4) AND
+                                                tbl_form.emp_status_id IN (1, 2, 3) AND
                                                 (
                                                     tbl_form.firstname LIKE '%$_GET[search]%' 
                                                     OR tbl_form.lastname LIKE '%$_GET[search]%'
@@ -235,7 +235,7 @@ if (isset($_GET['campus'])) {
                                             LEFT JOIN tbl_employment_status ON tbl_employment_status.emp_status_id = tbl_form.emp_status_id
                                             LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
                                             WHERE
-                                                tbl_form.emp_status_id IN (4) AND 
+                                                tbl_form.emp_status_id IN (1, 2, 3) AND 
                                                 tbl_campus.campus = '$_SESSION[campus]' AND (
                                                     tbl_form.firstname LIKE '%$_GET[search]%' 
                                                     OR tbl_form.lastname LIKE '%$_GET[search]%'

@@ -42,7 +42,7 @@ include '../../includes/head.php';
           <div class="card px-4 pb-4">
 
 
-            <h5 class="mb-0 pt-4">Alumni Full time Lists</h5>
+            <h4 class="text-center mb-0 pt-4">Alumni Full time Lists</h4>
 
             <div class="table-responsive">
               <table class="table table-flush" id="datatable-search">
