@@ -54,7 +54,7 @@ $_SESSION['alumni_id'] = $alumni_id;
                       <h6>(Step 1 out of step 3) Enter your personal information to proceed.</h6>
                     </div>
                    <?php
-$listalumni = mysqli_query($db, "SELECT * FROM tbl_form WHERE alumni_id = $alumni_id
+$listalumni = mysqli_query($db, "SELECT * FROM tbl_alumni WHERE alumni_id = $alumni_id
                   ");
 while ($row = mysqli_fetch_array($listalumni)) {
     $id = $row['alumni_id'];
@@ -70,14 +70,36 @@ while ($row = mysqli_fetch_array($listalumni)) {
                         <span>Middlename</span>
                       </div>
                       <div class="input-div">
-                        <input type="text" required require name="lastname" value="<?php echo $row['lastname']; ?>" >
+                        <input type="text" required require name="lastname" value="<?php echo $row['lastname']; }?>" >
                         <span>Lastname</span>
                       </div>
                     </div>
                     <div class="input-text">
                       <div class="input-div">
                         <select  name="gender" require>
-                          <option value="" selected disabled>gender</option>
+                        <?php
+                          $listalumni = mysqli_query($db, "SELECT * FROM tbl_form 
+                          LEFT JOIN tbl_gender ON tbl_gender.gender_id = tbl_form.gender_id 
+                          LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_form.campus_id
+                          LEFT JOIN tbl_civil_status ON tbl_civil_status.civil_id = tbl_form.civil_id
+                          LEFT JOIN tbl_program ON tbl_program.program_id = tbl_form.program_id
+                          LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
+                          LEFT JOIN tbl_attainment ON tbl_attainment.attain_id = tbl_form.attain_id
+                          LEFT JOIN tbl_employment_status ON tbl_employment_status.emp_status_id = tbl_form.emp_status_id
+                          LEFT JOIN tbl_primary_work_loc ON tbl_primary_work_loc.loc_id = tbl_form.loc_id
+                          LEFT JOIN tbl_type_org ON tbl_type_org.type_id = tbl_form.type_id
+                          LEFT JOIN tbl_length_employment ON tbl_length_employment.length_id = tbl_form.length_id
+                          LEFT JOIN tbl_align ON tbl_align.align_id = tbl_form.align_id
+                          LEFT JOIN tbl_satisfy ON tbl_satisfy.sat_id = tbl_form.sat_id
+                          LEFT JOIN tbl_collaborate ON tbl_collaborate.collab_id = tbl_form.collab_id
+                          LEFT JOIN tbl_consent ON tbl_consent.consent_id = tbl_form.consent_id
+                  
+                          WHERE alumni_id = $alumni_id
+                          ");
+while ($row = mysqli_fetch_array($listalumni)) {
+    $id = $row['alumni_id'];
+    ?>
+                          <option value="<?php echo $row['gender_id']?>" selected disabled><?php echo $row['gender'] ?> (Currently Selected)</option>
                           <?php
 foreach ($gender as $sex) {
     ?>
@@ -92,7 +114,7 @@ foreach ($gender as $sex) {
                       </div>
                       <div class="input-div">
                         <select name="campus" require>
-                            <option value="" selected disabled>campus</option>
+                        <option value="<?php echo $row['campus_id']?>" selected disabled><?php echo $row['campus'] ?> (Currently Selected)</option>
                             <?php
                             foreach ($campus as $branch) {
                             ?>
@@ -104,9 +126,10 @@ foreach ($gender as $sex) {
                             ?>
                         </select>
                     </div>
+                    
                       <div class="input-div">
                         <select name="civil" required>
-                          <option value="" selected disabled >civil status</option>
+                        <option value="<?php echo $row['civil_id']?>" selected disabled><?php echo $row['civil'] ?> (Currently Selected)</option>
                           <?php
 foreach ($civil as $Civil) {
     ?>
@@ -160,9 +183,9 @@ foreach ($civil as $Civil) {
                     </div>
                     <div class="input-text">
 
-                      <div class="input-div">
+                      <div class="input-div" >
                         <select name="program" required >
-                          <option value="" selected disabled>Bachelor's Degree in SFAC</option>
+                        <option value="<?php echo $row['program_id']?>" selected disabled><?php echo $row['program'] ?> (Currently Selected)</option>
                           <?php
                             foreach ($program as $Program) {
                                       ?>
@@ -173,7 +196,7 @@ foreach ($civil as $Civil) {
                       </div>
                       <div class="input-div">
                         <select  name="batch">
-                          <option value="" selected disabled>Year Graduated</option>
+                        <option value="<?php echo $row['batch_id']?>" selected disabled><?php echo $row['batch'] ?> (Currently Selected)</option>
                           <?php
                             foreach ($batch as $Batch) {?>
                             <option value="<?php echo $Batch['batch_id'] ?>">
@@ -189,7 +212,7 @@ foreach ($civil as $Civil) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="attain">
-                          <option value="" selected disabled>Latest Attainment</option>
+                        <option value="<?php echo $row['attain_id']?>" selected disabled><?php echo $row['attainment'] ?> (Currently Selected)</option>
                           <?php
                             foreach ($attainment as $Attainment) {
                                 ?>
@@ -240,7 +263,7 @@ foreach ($civil as $Civil) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="status" required>
-                          <option value="" selected disabled>Employment Status</option>
+                        <option value="<?php echo $row['emp_status_id']?>" selected disabled><?php echo $row['status'] ?> (Currently Selected)</option>
                           <?php
 foreach ($employment as $Employment) {
     ?>
@@ -257,7 +280,7 @@ foreach ($employment as $Employment) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="location">
-                          <option value="" selected disabled>Primary work location</option>
+                        <option value="<?php echo $row['loc_id']?>" selected disabled><?php echo $row['location'] ?> (Currently Selected)</option>
                           <?php
 foreach ($location as $Location) {
     ?>
@@ -269,7 +292,7 @@ foreach ($location as $Location) {
                       </div>
                       <div class="input-div">
                         <select name="type">
-                          <option value="" selected disabled>Type of Organization</option>
+                        <option value="<?php echo $row['type_id']?>" selected disabled><?php echo $row['type'] ?> (Currently Selected)</option>
                           <?php
 foreach ($organization as $Organization) {
     ?>
@@ -289,7 +312,7 @@ foreach ($organization as $Organization) {
                       </div>
                       <div class="input-div">
                         <select name="length">
-                          <option value="" selected disabled>Length of Employment</option>
+                        <option value="<?php echo $row['length_id']?>" selected disabled><?php echo $row['length'] ?> (Currently Selected)</option>
                           <?php
 foreach ($length as $Length) {
     ?>
@@ -303,7 +326,7 @@ foreach ($length as $Length) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="align">
-                          <option value="" selected disabled>Is your job related to your course in SFAC?</option>
+                          <option value="<?php echo $row['align_id']?>" selected disabled>Is job aligned on your course on SFAC? <?php echo $row['align'] ?> (Currently Selected)</option>
                           <?php
 foreach ($align as $Align) {
     ?>
@@ -315,7 +338,7 @@ foreach ($align as $Align) {
                       </div>
                       <div class="input-div">
                         <select name="satisfy">
-                          <option value="" selected disabled>How satisfied are you with your current job?</option>
+                          <option value="<?php echo $row['sat_id']?>" selected disabled>How satisfied are you with your current job? <?php echo $row['satisfy'] ?> (Currently Selected)</option>
                           <?php
 foreach ($satisfy as $Satisfy) {
     ?>
@@ -330,7 +353,7 @@ foreach ($satisfy as $Satisfy) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="collab">
-                          <option value="" selected disabled>Which of the following would you like to collaborate with us?</option>
+                          <option value="<?php echo $row['collab_id']?>" selected disabled>Which of the following would you like to collaborate with us? <?php echo $row['collaborate'] ?> (Currently Selected)</option>
                           <?php
                             foreach ($collaborate as $Collaborate) {?>
                             <option value="<?php echo $Collaborate['collab_id'] ?>"><?php echo $Collaborate['collaborate']; ?> </option>

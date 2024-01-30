@@ -84,8 +84,8 @@ include '../../includes/fetchData.php';
                       </div>
                     </div>
                     <div class="input-text">
-                                <select name="level_id">                   
-                                    <option selected disabled>Grade Level</option>                         
+                                <select name="level_id" required>                   
+                                    <option value="" selected disabled>Grade Level</option>                         
                                     <?php
                                     foreach ($level as $Level) {
                                     ?>

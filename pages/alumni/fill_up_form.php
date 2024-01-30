@@ -93,7 +93,7 @@ if ($num > 0) {
                     <div class="input-text">
                       <div class="input-div">
                         <select  name="gender" require>
-                          <option value="" selected disabled>gender</option>
+                          <option value="" selected disabled>Gender</option>
                           <?php
 foreach ($gender as $sex) {
     ?>
@@ -108,7 +108,7 @@ foreach ($gender as $sex) {
                       </div>
                       <div class="input-div">
                         <select name="campus" require>
-                            <option value="" selected disabled>campus</option>
+                            <option value="" selected disabled>Campus</option>
                             <?php
                             foreach ($campus as $branch) {
                             ?>
@@ -122,7 +122,7 @@ foreach ($gender as $sex) {
                     </div>
                       <div class="input-div">
                         <select name="civil" required>
-                          <option value="" selected disabled >civil status</option>
+                          <option value="" selected disabled >Civil Status</option>
                           <?php
 foreach ($civil as $Civil) {
     ?>
@@ -275,7 +275,7 @@ foreach ($employment as $Employment) {
                     <div class="input-text">
                       <div class="input-div">
                         <select name="location">
-                          <option value="" selected disabled>Primary work location</option>
+                          <option value="" selected disabled>Primary Work Location</option>
                           <?php
 foreach ($location as $Location) {
     ?>
