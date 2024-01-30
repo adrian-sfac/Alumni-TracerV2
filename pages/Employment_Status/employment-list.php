@@ -214,8 +214,8 @@ if (isset($_GET['campus'])) {
                                             WHERE 
                                                 tbl_form.emp_status_id IN (1, 2, 3) AND
                                                 (
-                                                    tbl_form.firstname LIKE '%$_GET[search]%' 
-                                                    OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                  tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                                    OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                                     OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                                     OR tbl_batch.batch LIKE '%$_GET[search]%'
                                                     OR tbl_program.course_abv LIKE '%$_GET[search]%'
@@ -237,8 +237,8 @@ if (isset($_GET['campus'])) {
                                             WHERE
                                                 tbl_form.emp_status_id IN (1, 2, 3) AND 
                                                 tbl_campus.campus = '$_SESSION[campus]' AND (
-                                                    tbl_form.firstname LIKE '%$_GET[search]%' 
-                                                    OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                  tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                                    OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                                     OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                                     OR tbl_batch.batch LIKE '%$_GET[search]%'
                                                     OR tbl_program.course_abv LIKE '%$_GET[search]%'
