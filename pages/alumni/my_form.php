@@ -82,6 +82,7 @@ while ($row = mysqli_fetch_array($listalumni)) {
                           LEFT JOIN tbl_gender ON tbl_gender.gender_id = tbl_form.gender_id 
                           LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_form.campus_id
                           LEFT JOIN tbl_civil_status ON tbl_civil_status.civil_id = tbl_form.civil_id
+                          LEFT JOIN tbl_level ON tbl_level.level_id = tbl_form.level_id
                           LEFT JOIN tbl_program ON tbl_program.program_id = tbl_form.program_id
                           LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
                           LEFT JOIN tbl_attainment ON tbl_attainment.attain_id = tbl_form.attain_id
@@ -146,6 +147,21 @@ foreach ($civil as $Civil) {
                         <input type="text" required require name="email" value="<?php echo $row['email']; ?>">
                         <span>E-mail Address</span>
                       </div>
+                      <div class="input-div">
+                        <select require name="level" required>
+                        <option value="<?php echo $row['level_id']?>" selected>Level Graduated: <?php echo $row['level'] ?> (Current Selected)</option>
+                          <?php
+                          foreach ($level as $Level) {
+                              ?>
+                                                      <option value="<?php echo $Level['level_id'] ?>">
+                                                        <?php echo $Level['level'] ?>
+                                                      </option>
+
+                                                    <?php
+                          }
+                          ?>
+                        </select>
+                    </div>
                     </div>
                     <div class="input-text">
                       <div class="input-div">

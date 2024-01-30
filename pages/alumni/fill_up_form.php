@@ -75,18 +75,23 @@ if ($num > 0) {
                       <h2>Fill up Personal Information</h2>
                       <h6>(Step 1 out of step 3) Enter your personal information to proceed.</h6>
                     </div>
+                    <?php
+                          $alumni = mysqli_query($db, "SELECT * FROM tbl_alumni WHERE alumni_id = $alumni_id");
+                        while ($row = mysqli_fetch_array($alumni)) {
+                            $id = $row['alumni_id'];
+                            ?>
                     <div class="input-text">
                       <input type="text" value="<?php echo $alumni_id ?>" hidden name="userid">
                       <div class="input-div">
-                        <input type="text" required require id="user_name" name="firstname">
+                        <input type="text" required require id="user_name" name="firstname" value="<?php echo $row['firstname']; ?>">
                         <span>Firstname</span>
                       </div>
                       <div class="input-div">
-                        <input type="text" required require name="middlename" >
+                        <input type="text" required require name="middlename" value="<?php echo $row['middlename']; ?>" >
                         <span>Middlename</span>
                       </div>
                       <div class="input-div">
-                        <input type="text" required require name="lastname" >
+                        <input type="text" required require name="lastname" value="<?php echo $row['lastname']; }?>" >
                         <span>Lastname</span>
                       </div>
                     </div>
@@ -139,6 +144,27 @@ foreach ($civil as $Civil) {
                         <input type="text" required require name="email">
                         <span>E-mail Address</span>
                       </div>
+                      <div class="input-div">
+                        <select name="level" required>
+                        <?php
+                          $tbllevel = mysqli_query($db, "SELECT * FROM tbl_alumni 
+                          LEFT JOIN tbl_level ON tbl_level.level_id = tbl_alumni.level_id WHERE alumni_id = $alumni_id");
+                        while ($row = mysqli_fetch_array($tbllevel)) {
+                            $id = $row['alumni_id'];
+                            ?>
+                          <option value="<?php echo $row['level_id']?>" selected>Level Graduated: <?php echo $row['level'] ?> <?php }?></option>
+                          <?php
+                          foreach ($level as $Level) {
+                              ?>
+                                                      <option value="<?php echo $Level['level_id'] ?>">
+                                                        <?php echo $Level['level'] ?>
+                                                      </option>
+
+                                                    <?php
+                          }
+                          ?>
+                        </select>
+                    </div>
                     </div>
                     <div class="input-text">
                       <div class="input-div">

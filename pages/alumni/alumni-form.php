@@ -286,8 +286,8 @@ if (isset($_GET['department'])) {
                                       LEFT JOIN tbl_batch ON tbl_batch.batch_id = tbl_form.batch_id
                                       LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
                                       WHERE 
-                                          tbl_form.firstname LIKE '%$_GET[search]%' 
-                                          OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                        tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                          OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                           OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                           OR tbl_batch.batch LIKE '%$_GET[search]%'
                                           OR tbl_program.course_abv LIKE '%$_GET[search]%'
@@ -309,8 +309,8 @@ if (isset($_GET['department'])) {
                                           LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
                                           WHERE 
                                               tbl_campus.campus = '$_SESSION[campus]' AND (
-                                                  tbl_form.firstname LIKE '%$_GET[search]%' 
-                                                  OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                                  OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                                   OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                                   OR tbl_batch.batch LIKE '%$_GET[search]%'
                                                   OR tbl_program.course_abv LIKE '%$_GET[search]%'
@@ -333,8 +333,8 @@ if (isset($_GET['department'])) {
                                           LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
                                           WHERE 
                                               tbl_campus.campus = '$_SESSION[campus]' AND (
-                                                  tbl_form.firstname LIKE '%$_GET[search]%' 
-                                                  OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                                  OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                                   OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                                   OR tbl_batch.batch LIKE '%$_GET[search]%'
                                                   OR tbl_program.course_abv LIKE '%$_GET[search]%'
@@ -357,8 +357,8 @@ if (isset($_GET['department'])) {
                                           LEFT JOIN tbl_department ON tbl_department.dep_id = tbl_program.dep_id
                                           WHERE 
                                               tbl_campus.campus = '$_SESSION[campus]' AND (
-                                                  tbl_form.firstname LIKE '%$_GET[search]%' 
-                                                  OR tbl_form.lastname LIKE '%$_GET[search]%'
+                                                tbl_alumni.firstname LIKE '%$_GET[search]%' 
+                                                  OR tbl_alumni.lastname LIKE '%$_GET[search]%'
                                                   OR tbl_alumni.stud_no LIKE '%$_GET[search]%'
                                                   OR tbl_batch.batch LIKE '%$_GET[search]%'
                                                   OR tbl_program.course_abv LIKE '%$_GET[search]%'

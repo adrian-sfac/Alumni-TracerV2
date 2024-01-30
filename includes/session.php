@@ -48,7 +48,7 @@ if (!empty($_SESSION['role'])) {
   } elseif ($_SESSION['role'] === "Student") {
     $student_id = $_SESSION['userid'];
 
-    $query_stud = $db->query("SELECT student_id,img,username,email FROM tbl_student WHERE student_id = '$student_id'");
+    $query_stud = $db->query("SELECT student_id,img,username,email,batch_id FROM tbl_student WHERE student_id = '$student_id'");
     $row_stud = $query_stud->fetch_array();
     $user_image = $row_stud['img'];
     $user_name = $row_stud['username'];
