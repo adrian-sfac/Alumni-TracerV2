@@ -87,8 +87,21 @@ include '../../includes/fetchData.php';
     unset($_SESSION['transitionBatch']);
   } 
   ?>
-
   </script>
+
+  <script>
+  function confirmSubmit() {
+    return confirm("Are you sure you want to submit?");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("form").addEventListener("submit", function (event) {
+      if (!confirmSubmit()) {
+        event.preventDefault();
+      }
+    });
+  });
+</script>
 </body>
 
 </html>

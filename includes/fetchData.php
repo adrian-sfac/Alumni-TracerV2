@@ -83,3 +83,9 @@ $result12 = $db->query($query12);
 if ($result12->num_rows > 0) {
   $consent = mysqli_fetch_all($result12, MYSQLI_ASSOC);
 }
+
+$query14 = "SELECT * FROM tbl_level";
+$result14 = $db->query($query14);
+if ($result14->num_rows > 0) {
+  $level = mysqli_fetch_all($result14, MYSQLI_ASSOC);
+}

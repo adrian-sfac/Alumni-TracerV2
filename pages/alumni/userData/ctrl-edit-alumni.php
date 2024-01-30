@@ -48,10 +48,13 @@ if (isset($_POST['basic_info'])) {
 
     $getUser = mysqli_query($db, "SELECT admin_id AS userID FROM tbl_super_ad WHERE username = '$username' UNION SELECT ad_id AS userID FROM tbl_admin WHERE username = '$username' UNION SELECT reg_id AS userID FROM tbl_registrar WHERE username = '$username' UNION SELECT alumni_id AS userID FROM tbl_alumni WHERE username = '$username'") or die(mysqli_error($db));
     $rCheck = $getUser->fetch_array();
+    
+    $selectedLevelId = mysqli_real_escape_string($db, $_POST['level_id']);
+    $updateLevel = mysqli_query($db, "UPDATE tbl_alumni SET level_id = '$selectedLevelId' WHERE alumni_id = '$alumni_id'") or die(mysqli_error($db));
 
     if ($check == 0 || $_SESSION['userid'] == $rCheck['userID']) {
   $updateInfo = mysqli_query($db, "UPDATE tbl_alumni SET username='$username' WHERE alumni_id = '$alumni_id'") or die(mysqli_error($db));
-            $_SESSION['successUpdate'] = 'Username Successfully Updated!';
+            $_SESSION['successUpdate'] = 'Basic Info Successfully Updated!';
             header("location: ../edit-alumni.php");
     } else {
         $_SESSION['usernameExist'] = 'Username already existed!';

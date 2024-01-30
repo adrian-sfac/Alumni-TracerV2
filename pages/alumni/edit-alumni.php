@@ -20,6 +20,8 @@
 require '../../includes/conn.php';
 include '../../includes/head.php';
 include '../../includes/session.php';
+include '../../includes/fetchData.php';
+
 
 $_SESSION['alumni_id'] = $alumni_id;
 ?>
@@ -75,8 +77,10 @@ $_SESSION['alumni_id'] = $alumni_id;
               <div class="col-sm-auto col-4">
                 <div class="avatar avatar-xl position-relative">
                   <?php
-$getUserData = mysqli_query($db, "SELECT * FROM tbl_alumni WHERE alumni_id = '$alumni_id'");
+$getUserData = mysqli_query($db, "SELECT A.*, B.level FROM tbl_alumni A JOIN tbl_level B ON A.level_id = B.level_id WHERE A.alumni_id = '$alumni_id'");
+
 while ($row = mysqli_fetch_array($getUserData)) {
+$levelalumni = $row['level_id'];
     if (!empty($row['img'])) {
         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" alt="bruce"
                                                 class="border-radius-lg shadow-sm" style="height: 80px; width: 80px;">';
@@ -145,8 +149,28 @@ while ($row = mysqli_fetch_array($getUserData)) {
                   <div class="input-group input-group-static">
                     <label>Username</label>
                     <input name="username" type="txt" class="form-control" placeholder="example@email.com" value="<?php echo $row['username'];
-} ?>">
+ ?>">
                   </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-static" >
+                        <label>Grade Level</label>
+                        <div class="input-text">
+                            <select name="level_id" class="form-control" style="border: 1px #000;">
+                                <option selected disabled>Current Grade Level: <?php echo $row['level'] ?><?php } ?></option>
+                                <?php
+                                foreach ($level as $Level) {
+                                    $selected = ($row['level_id'] == $Level['level_id']) ? 'selected' : '';
+                                ?>
+                                    <option value="<?php echo $Level['level_id'] ?>" <?php echo $selected ?>>
+                                        <?php echo $Level['level'] ?>
+                                    </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
               </div>
@@ -196,10 +220,10 @@ while ($row = mysqli_fetch_array($getUserData)) {
     unset($_SESSION['usernameExist']);
   }  elseif (!empty($_SESSION['successUpdate'])){
 ?>
-   Swal.fire("Username", "Updated Successfully", "success");
-
-  <?php }
+   Swal.fire("Basic Info", "Updated Successfully", "success");
   
+  <?php 
+   unset($_SESSION['successUpdate']); }
   ?>
 
   <?php 

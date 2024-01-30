@@ -19,6 +19,7 @@
 include '../../includes/session.php';
 // End Session 
 include '../../includes/head.php';
+include '../../includes/fetchData.php';
 ?>
 
 
@@ -82,6 +83,20 @@ include '../../includes/head.php';
                         <span>Last Name</span>
                       </div>
                     </div>
+                    <div class="input-text">
+                                <select name="level_id">                   
+                                    <option selected disabled>Grade Level</option>                         
+                                    <?php
+                                    foreach ($level as $Level) {
+                                    ?>
+                                        <option value="<?php echo $Level['level_id'] ?>">
+                                            <?php echo $Level['level'] ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                     <div class="buttons">
                       <button class="next_button">Next Step</button>
                     </div>

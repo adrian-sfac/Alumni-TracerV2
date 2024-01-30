@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
   $firstname    = mysqli_real_escape_string($db, $_POST['firstname']);
   $middlename    = mysqli_real_escape_string($db, $_POST['middlename']);
   $lastname    = mysqli_real_escape_string($db, $_POST['lastname']);
+  $level_id = mysqli_real_escape_string($db, $_POST['level_id']);
   $username    = mysqli_real_escape_string($db, $_POST['username']);
   $password    = mysqli_real_escape_string($db, $_POST['password']);
   $confirm_pass = mysqli_real_escape_string($db, $_POST['confirm_pass']);
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
 
   if ($password == $confirm_pass) {
     $hashedPwd = password_hash($confirm_pass, PASSWORD_DEFAULT);
-    $insertStudent = mysqli_query($db, "INSERT INTO tbl_alumni (stud_no, firstname, middlename, lastname, username, password) VALUES ('$stud_no','$firstname','$middlename' , '$lastname', '$username', '$hashedPwd')") or die(mysqli_error($db));
+    $insertStudent = mysqli_query($db, "INSERT INTO tbl_alumni (stud_no, firstname, middlename, lastname, level_id, username, password) VALUES ('$stud_no','$firstname','$middlename' , '$lastname', '$level_id', '$username', '$hashedPwd')") or die(mysqli_error($db));
 
     $_SESSION['studAdded'] = 'Alumni Successfully Added';
     header("location: ../../alumni/add_alumni.php");

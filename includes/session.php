@@ -64,13 +64,14 @@ if (!empty($_SESSION['role'])) {
   } elseif ($_SESSION['role'] === "Alum Stud") {
     $alumni_id = $_SESSION['userid'];
 
-    $query_stud = $db->query("SELECT a.img, a.username,a.firstname,a.middlename,a.lastname,f.batch_id,f.program_id,f.email FROM tbl_alumni a LEFT JOIN tbl_form f USING(alumni_id) WHERE alumni_id = '$alumni_id'");
+    $query_stud = $db->query("SELECT a.img, a.username,a.firstname,a.middlename,a.lastname,f.level_id,f.batch_id,f.program_id,f.email FROM tbl_alumni a LEFT JOIN tbl_form f USING(alumni_id) WHERE alumni_id = '$alumni_id'");
     $row_stud = $query_stud->fetch_array();
     $user_image = $row_stud['img'];
     $user_name = $row_stud['username'];
     $firstname = $row_stud['firstname'];
     $middlename = $row_stud['middlename'];
     $lastname = $row_stud['lastname'];
+    $level_id = $row_stud['level_id'];
     $batch_id = $row_stud['batch_id'];
     $program_id = $row_stud['program_id'];
     $email = $row_stud['email'];
